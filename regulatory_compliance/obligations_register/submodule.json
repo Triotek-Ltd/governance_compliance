@@ -1,0 +1,8 @@
+{
+  "id": "obligations_register",
+  "title": "Obligations Register",
+  "app_id": "governance_compliance",
+  "module_id": "regulatory_compliance",
+  "type": "submodule",
+  "status": "draft"
+}

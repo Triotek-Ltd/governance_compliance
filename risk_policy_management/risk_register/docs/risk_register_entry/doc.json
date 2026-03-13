@@ -1,0 +1,27 @@
+{
+  "doc_key": "risk_register_entry",
+  "doc_title": "Risk Register Entry",
+  "doc_kind": "ledger",
+  "status": "draft",
+  "module_id": "risk_policy_management",
+  "submodule_id": "risk_register",
+  "app_id": "governance_compliance",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "ledger",
+  "classification": {
+    "archetype": "ledger",
+    "bundle": "administration"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "administration",
+    "app": "governance_compliance",
+    "module": "risk_policy_management",
+    "submodule": "risk_register",
+    "reference_doc_id": "risk_register_entry",
+    "evidence_gaps": [
+      "risk scoring method",
+      "category taxonomy"
+    ]
+  }
+}

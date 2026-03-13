@@ -1,0 +1,26 @@
+{
+  "doc_key": "audit_response_record",
+  "doc_title": "Audit Response Record",
+  "doc_kind": "ledger",
+  "status": "draft",
+  "module_id": "audit_preparation",
+  "submodule_id": "responses",
+  "app_id": "governance_compliance",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "ledger",
+  "classification": {
+    "archetype": "ledger",
+    "bundle": "administration"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "administration",
+    "app": "governance_compliance",
+    "module": "audit_preparation",
+    "submodule": "responses",
+    "reference_doc_id": "audit_response_record",
+    "evidence_gaps": [
+      "general log vs typed response split"
+    ]
+  }
+}

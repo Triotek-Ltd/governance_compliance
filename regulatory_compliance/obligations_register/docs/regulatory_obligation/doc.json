@@ -1,0 +1,27 @@
+{
+  "doc_key": "regulatory_obligation",
+  "doc_title": "Regulatory Obligation",
+  "doc_kind": "configuration",
+  "status": "draft",
+  "module_id": "regulatory_compliance",
+  "submodule_id": "obligations_register",
+  "app_id": "governance_compliance",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "configuration",
+  "classification": {
+    "archetype": "configuration",
+    "bundle": "administration"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "administration",
+    "app": "governance_compliance",
+    "module": "regulatory_compliance",
+    "submodule": "obligations_register",
+    "reference_doc_id": "regulatory_obligation",
+    "evidence_gaps": [
+      "obligation taxonomy",
+      "jurisdiction model"
+    ]
+  }
+}

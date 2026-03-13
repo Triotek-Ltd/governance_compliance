@@ -1,0 +1,116 @@
+{
+  "doc_id": "audit_finding",
+  "doc_title": "Audit Finding",
+  "archetype": "workflow_case",
+  "doc_kind": "workflow_case",
+  "actions": [
+    "create",
+    "review",
+    "confirm",
+    "close",
+    "archive"
+  ],
+  "lifecycle": {
+    "initial_state": "open",
+    "states": [
+      "open",
+      "confirmed",
+      "resolved",
+      "closed",
+      "archived"
+    ],
+    "terminal_states": [
+      "closed",
+      "archived"
+    ]
+  },
+  "related_doc_count": 2,
+  "fetch_rule_count": 0,
+  "action_handler_count": 5,
+  "archetype_profile": {
+    "workflow_profile": {
+      "mode": "case_flow",
+      "supports_assignment": true,
+      "supports_escalation": true
+    },
+    "reporting_profile": {
+      "supports_snapshots": true,
+      "supports_outputs": false
+    },
+    "integration_profile": {
+      "external_sync_enabled": false
+    },
+    "lifecycle_states": [
+      "open",
+      "confirmed",
+      "resolved",
+      "closed",
+      "archived"
+    ],
+    "is_transactional": false
+  },
+  "contract_summary": {
+    "title_field": "title",
+    "status_field": "workflow_state",
+    "reference_field": "reference_no",
+    "required_fields": [
+      "title",
+      "workflow_state"
+    ],
+    "field_purposes": {
+      "workflow_state": "lifecycle_state",
+      "due_date": "schedule_marker"
+    },
+    "search_fields": [
+      "title",
+      "reference_no",
+      "description",
+      "finding_no",
+      "engagement",
+      "category"
+    ],
+    "list_columns": [
+      "title",
+      "reference_no",
+      "workflow_state",
+      "modified"
+    ],
+    "initial_state": "open",
+    "lifecycle_states": [
+      "open",
+      "confirmed",
+      "resolved",
+      "closed",
+      "archived"
+    ],
+    "terminal_states": [
+      "closed",
+      "archived"
+    ],
+    "action_targets": {
+      "confirm": "confirmed",
+      "create": null,
+      "archive": "archived",
+      "close": "closed",
+      "review": null
+    }
+  },
+  "workflow_hints": {
+    "business_objective": "Track issues identified during audit work until confirmation and resolution.",
+    "actors": [
+      "audit coordinator",
+      "reviewer",
+      "owner"
+    ],
+    "primary_transitions": [
+      "audit_finding: open -> confirmed -> resolved -> closed -> archived"
+    ]
+  },
+  "related_docs": [
+    "audit_engagement",
+    "corrective_action_plan"
+  ],
+  "borrowed_fields": [
+    "engagement context from audit_engagement"
+  ]
+}

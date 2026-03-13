@@ -1,0 +1,27 @@
+{
+  "doc_key": "audit_document_request",
+  "doc_title": "Audit Document Request",
+  "doc_kind": "workflow_case",
+  "status": "draft",
+  "module_id": "audit_preparation",
+  "submodule_id": "requests_findings",
+  "app_id": "governance_compliance",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "workflow_case",
+  "classification": {
+    "archetype": "workflow_case",
+    "bundle": "administration"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "administration",
+    "app": "governance_compliance",
+    "module": "audit_preparation",
+    "submodule": "requests_findings",
+    "reference_doc_id": "audit_document_request",
+    "evidence_gaps": [
+      "bulk request model",
+      "reminder rules"
+    ]
+  }
+}

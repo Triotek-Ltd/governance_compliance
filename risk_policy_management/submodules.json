@@ -1,0 +1,6 @@
+{
+  "submodules": [
+    "risk_register",
+    "policy_library"
+  ]
+}

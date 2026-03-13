@@ -1,0 +1,27 @@
+{
+  "doc_key": "policy_document",
+  "doc_title": "Policy Document",
+  "doc_kind": "transaction",
+  "status": "draft",
+  "module_id": "risk_policy_management",
+  "submodule_id": "policy_library",
+  "app_id": "governance_compliance",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "transaction",
+  "classification": {
+    "archetype": "transaction",
+    "bundle": "administration"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "administration",
+    "app": "governance_compliance",
+    "module": "risk_policy_management",
+    "submodule": "policy_library",
+    "reference_doc_id": "policy_document",
+    "evidence_gaps": [
+      "publication requirements",
+      "acknowledgement requirements"
+    ]
+  }
+}

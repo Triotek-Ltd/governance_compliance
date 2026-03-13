@@ -1,0 +1,6 @@
+{
+  "submodules": [
+    "filings_tracking",
+    "obligations_register"
+  ]
+}

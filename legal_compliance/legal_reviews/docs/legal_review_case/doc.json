@@ -1,0 +1,27 @@
+{
+  "doc_key": "legal_review_case",
+  "doc_title": "Legal Review Case",
+  "doc_kind": "workflow_case",
+  "status": "draft",
+  "module_id": "legal_compliance",
+  "submodule_id": "legal_reviews",
+  "app_id": "governance_compliance",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "workflow_case",
+  "classification": {
+    "archetype": "workflow_case",
+    "bundle": "administration"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "administration",
+    "app": "governance_compliance",
+    "module": "legal_compliance",
+    "submodule": "legal_reviews",
+    "reference_doc_id": "legal_review_case",
+    "evidence_gaps": [
+      "approval routing",
+      "legal-opinion capture"
+    ]
+  }
+}

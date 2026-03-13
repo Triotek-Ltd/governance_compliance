@@ -1,0 +1,8 @@
+{
+  "id": "legal_compliance",
+  "title": "Legal Compliance",
+  "app_id": "governance_compliance",
+  "type": "module",
+  "status": "draft",
+  "supports_submodules": true
+}

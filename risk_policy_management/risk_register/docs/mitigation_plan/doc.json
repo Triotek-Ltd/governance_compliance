@@ -1,0 +1,26 @@
+{
+  "doc_key": "mitigation_plan",
+  "doc_title": "Mitigation Plan",
+  "doc_kind": "workflow_case",
+  "status": "draft",
+  "module_id": "risk_policy_management",
+  "submodule_id": "risk_register",
+  "app_id": "governance_compliance",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "workflow_case",
+  "classification": {
+    "archetype": "workflow_case",
+    "bundle": "administration"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "administration",
+    "app": "governance_compliance",
+    "module": "risk_policy_management",
+    "submodule": "risk_register",
+    "reference_doc_id": "mitigation_plan",
+    "evidence_gaps": [
+      "action-line detail model"
+    ]
+  }
+}

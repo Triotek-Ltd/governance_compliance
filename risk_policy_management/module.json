@@ -1,0 +1,8 @@
+{
+  "id": "risk_policy_management",
+  "title": "Risk Policy Management",
+  "app_id": "governance_compliance",
+  "type": "module",
+  "status": "draft",
+  "supports_submodules": true
+}

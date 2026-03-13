@@ -1,0 +1,7 @@
+{
+  "submodules": [
+    "requests_findings",
+    "engagements",
+    "responses"
+  ]
+}

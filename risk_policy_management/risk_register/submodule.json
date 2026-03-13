@@ -1,0 +1,8 @@
+{
+  "id": "risk_register",
+  "title": "Risk Register",
+  "app_id": "governance_compliance",
+  "module_id": "risk_policy_management",
+  "type": "submodule",
+  "status": "draft"
+}
