@@ -7,4 +7,4 @@ class DocRuntime:
         return payload
 
     def allowed_actions(self):
-        return ['record', 'review', 'archive']
+        return ['create', 'review', 'approve', 'close', 'archive', 'score', 'mitigate', 'escalate', 'reopen']

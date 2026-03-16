@@ -1,9 +1,9 @@
 {
   "modules": [
+    "audit_preparation",
+    "business_law_fundamentals",
     "corporate_record_keeping",
     "regulatory_compliance",
-    "legal_compliance",
-    "audit_preparation",
     "risk_policy_management"
   ]
 }

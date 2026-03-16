@@ -3,16 +3,18 @@
 from __future__ import annotations
 
 
-ARCHETYPE_PROFILE = {'workflow_profile': {'mode': 'posting_flow', 'supports_reconciliation': True}, 'reporting_profile': {'supports_snapshots': True, 'supports_outputs': True}, 'integration_profile': {'external_sync_enabled': True, 'tracks_external_refs': True}, 'lifecycle_states': ['active', 'archived'], 'is_transactional': True}
+ARCHETYPE_PROFILE = {'workflow_profile': {'mode': 'case_flow', 'supports_assignment': True, 'supports_escalation': True}, 'reporting_profile': {'supports_snapshots': True, 'supports_outputs': False}, 'integration_profile': {'external_sync_enabled': False}, 'lifecycle_states': ['open', 'mitigated', 'closed', 'archived'], 'is_transactional': False}
 
-CONTRACT = {'title_field': 'title', 'status_field': 'workflow_state', 'reference_field': 'reference_no', 'required_fields': ['title', 'workflow_state', 'posting_date'], 'field_purposes': {'workflow_state': 'lifecycle_state', 'posting_date': 'posting_date', 'owner': 'actor_reference', 'review_date': 'schedule_marker'}, 'search_fields': ['title', 'reference_no', 'description', 'risk_no', 'category', 'owner'], 'list_columns': ['title', 'reference_no', 'posting_date', 'workflow_state'], 'initial_state': 'active', 'lifecycle_states': ['active', 'archived'], 'terminal_states': ['archived'], 'action_targets': {'record': None, 'archive': 'archived', 'review': None}}
+CONTRACT = {'title_field': 'title', 'status_field': 'workflow_state', 'reference_field': 'reference_no', 'required_fields': ['title', 'workflow_state'], 'field_purposes': {'workflow_state': 'lifecycle_state', 'review_date': 'schedule_marker', 'related_mitigation_plan': 'relation_collection', 'related_policy_document': 'relation_collection'}, 'search_fields': ['title', 'reference_no', 'description', 'risk_number', 'risk_category', 'risk_owner'], 'list_columns': ['title', 'reference_no', 'workflow_state', 'modified'], 'initial_state': 'open', 'lifecycle_states': ['open', 'mitigated', 'closed', 'archived'], 'terminal_states': ['closed', 'archived'], 'action_targets': {'create': None, 'review': None, 'approve': None, 'close': 'closed', 'archive': 'archived', 'score': None, 'mitigate': None, 'escalate': None, 'reopen': None}}
 
-WORKFLOW_HINTS = {'business_objective': 'Maintain the active institutional risk register and its review trail.', 'actors': ['risk owner', 'compliance officer'], 'primary_transitions': ['risk_register_entry: active -> archived']}
+WORKFLOW_HINTS = {'business_objective': 'record risks, monitor treatment actions, and maintain policy updates in response to control needs', 'actors': ['risk owner', 'policy owner', 'reviewer'], 'start_condition': 'a risk or policy issue is identified', 'ordered_steps': ['Record the identified risk or policy trigger.'], 'primary_actions': ['create', 'review'], 'primary_transitions': ['risk_register_entry: draft -> active'], 'downstream_effects': ['supports compliance, audit, and business-law controls'], 'action_actors': {'create': ['risk owner'], 'review': ['reviewer'], 'approve': ['reviewer'], 'close': ['risk owner'], 'archive': ['risk owner']}}
+
+SIDE_EFFECT_HINTS = {'downstream_effects': ['supports compliance, audit, and business-law controls'], 'related_docs': ['mitigation_plan', 'policy_document'], 'action_targets': {'create': None, 'review': None, 'approve': None, 'close': 'closed', 'archive': 'archived', 'score': None, 'mitigate': None, 'escalate': None, 'reopen': None}, 'action_side_effects_file': 'side_effects.json'}
 
 class DomainService:
     doc_id = "risk_register_entry"
-    archetype = "ledger"
-    doc_kind = "ledger"
+    archetype = "workflow_case"
+    doc_kind = "workflow_case"
 
     def required_fields(self) -> list[str]:
         return CONTRACT.get("required_fields", [])
@@ -63,12 +65,28 @@ class DomainService:
     def after_update(self, instance, serialized_data: dict, context: dict | None = None) -> dict:
         return serialized_data
 
+    def after_action(
+        self,
+        instance,
+        action_id: str,
+        payload: dict,
+        action_result: dict,
+        context: dict | None = None,
+    ) -> dict:
+        return {
+            "updates": {},
+            "side_effects": [],
+        }
+
     def shape_retrieve_data(self, instance, serialized_data: dict, context: dict | None = None) -> dict:
         serialized_data.setdefault("_business_capabilities", self.business_capabilities())
         return serialized_data
 
     def workflow_objective(self) -> str | None:
         return WORKFLOW_HINTS.get("business_objective")
+
+    def side_effect_hints(self) -> dict:
+        return SIDE_EFFECT_HINTS
 
     def business_capabilities(self) -> dict:
         return {

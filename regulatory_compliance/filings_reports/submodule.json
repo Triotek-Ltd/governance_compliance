@@ -1,0 +1,8 @@
+{
+  "id": "filings_reports",
+  "title": "Filings Reports",
+  "app_id": "governance_compliance",
+  "module_id": "regulatory_compliance",
+  "type": "submodule",
+  "status": "draft"
+}

@@ -4,9 +4,9 @@ from __future__ import annotations
 
 
 DOC_ID = "risk_register_entry"
-DOC_KIND = "ledger"
+DOC_KIND = "workflow_case"
 
-LIST_COLUMNS = ['title', 'reference_no', 'posting_date', 'workflow_state']
+LIST_COLUMNS = ['title', 'reference_no', 'workflow_state', 'modified']
 
 class ReportService:
     def supports_reporting_hooks(self) -> bool:
@@ -16,4 +16,4 @@ class ReportService:
         return LIST_COLUMNS
 
     def reporting_profile(self) -> dict:
-        return {'supports_snapshots': True, 'supports_outputs': True}
+        return {'supports_snapshots': True, 'supports_outputs': False}

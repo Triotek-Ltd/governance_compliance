@@ -63,7 +63,7 @@
       "title",
       "reference_no",
       "description",
-      "plan_no",
+      "plan_number",
       "risk",
       "control_actions"
     ],
@@ -85,27 +85,50 @@
       "archived"
     ],
     "action_targets": {
-      "close": "closed",
       "create": null,
       "assign": "in_progress",
-      "track": null
+      "track": null,
+      "close": "closed"
     }
   },
   "workflow_hints": {
-    "business_objective": "Track planned mitigation activity for active risks until closure.",
+    "relation_context": {
+      "related_docs": [
+        "risk_register_entry"
+      ],
+      "borrowed_fields": [
+        "severity",
+        "owner context from risk_register_entry"
+      ],
+      "inferred_roles": [
+        "compliance officer"
+      ]
+    },
     "actors": [
-      "risk owner",
-      "action owner",
       "compliance officer"
     ],
-    "primary_transitions": [
-      "mitigation_plan: open -> in_progress -> closed -> archived"
-    ]
+    "action_actors": {
+      "create": [
+        "compliance officer"
+      ],
+      "assign": [
+        "compliance officer"
+      ],
+      "track": [
+        "compliance officer"
+      ],
+      "close": [
+        "compliance officer"
+      ]
+    }
   },
+  "downstream_effects": [],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "risk_register_entry"
   ],
   "borrowed_fields": [
-    "risk context from risk_register_entry"
+    "severity",
+    "owner context from risk_register_entry"
   ]
 }

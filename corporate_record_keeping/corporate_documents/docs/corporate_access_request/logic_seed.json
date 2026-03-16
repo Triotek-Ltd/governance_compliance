@@ -1,0 +1,145 @@
+{
+  "doc_id": "corporate_access_request",
+  "doc_title": "Corporate Access Request",
+  "archetype": "workflow_case",
+  "doc_kind": "workflow_case",
+  "actions": [
+    "create",
+    "approve",
+    "close",
+    "archive"
+  ],
+  "lifecycle": {
+    "initial_state": "open",
+    "states": [
+      "open",
+      "approved",
+      "closed",
+      "archived"
+    ],
+    "terminal_states": [
+      "closed",
+      "archived"
+    ]
+  },
+  "related_doc_count": 1,
+  "fetch_rule_count": 0,
+  "action_handler_count": 4,
+  "archetype_profile": {
+    "workflow_profile": {
+      "mode": "case_flow",
+      "supports_assignment": true,
+      "supports_escalation": true
+    },
+    "reporting_profile": {
+      "supports_snapshots": true,
+      "supports_outputs": false
+    },
+    "integration_profile": {
+      "external_sync_enabled": false
+    },
+    "lifecycle_states": [
+      "open",
+      "approved",
+      "closed",
+      "archived"
+    ],
+    "is_transactional": false
+  },
+  "contract_summary": {
+    "title_field": "title",
+    "status_field": "workflow_state",
+    "reference_field": "reference_no",
+    "required_fields": [
+      "title",
+      "workflow_state"
+    ],
+    "field_purposes": {
+      "workflow_state": "lifecycle_state",
+      "requester": "actor_reference",
+      "approver": "actor_reference",
+      "decision_date": "schedule_marker",
+      "related_corporate_document": "relation_collection"
+    },
+    "search_fields": [
+      "title",
+      "reference_no",
+      "description",
+      "request_number",
+      "requester",
+      "target_record"
+    ],
+    "list_columns": [
+      "title",
+      "reference_no",
+      "workflow_state",
+      "modified"
+    ],
+    "initial_state": "open",
+    "lifecycle_states": [
+      "open",
+      "approved",
+      "closed",
+      "archived"
+    ],
+    "terminal_states": [
+      "closed",
+      "archived"
+    ],
+    "action_targets": {
+      "create": null,
+      "approve": "approved",
+      "close": "closed",
+      "archive": "archived"
+    }
+  },
+  "workflow_hints": {
+    "business_objective": "preserve formal corporate records, track them in registers, and govern access and retention",
+    "actors": [
+      "governance officer",
+      "custodian",
+      "approver"
+    ],
+    "start_condition": "a corporate legal or governance document must be retained",
+    "ordered_steps": [
+      "Control document access requests."
+    ],
+    "primary_actions": [
+      "create",
+      "submit",
+      "approve",
+      "close"
+    ],
+    "primary_transitions": [
+      "corporate_access_request: draft -> in_review -> approved -> closed"
+    ],
+    "downstream_effects": [
+      "supports legal, audit, and regulatory controls"
+    ],
+    "action_actors": {
+      "create": [
+        "governance officer"
+      ],
+      "approve": [
+        "approver"
+      ],
+      "close": [
+        "governance officer"
+      ],
+      "archive": [
+        "governance officer"
+      ]
+    }
+  },
+  "downstream_effects": [
+    "supports legal, audit, and regulatory controls"
+  ],
+  "action_side_effects_file": "side_effects.json",
+  "related_docs": [
+    "corporate_document"
+  ],
+  "borrowed_fields": [
+    "document type",
+    "storage reference from corporate_document"
+  ]
+}

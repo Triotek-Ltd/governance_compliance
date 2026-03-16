@@ -58,7 +58,7 @@
       "title",
       "reference_no",
       "description",
-      "record_no",
+      "record_number",
       "obligation",
       "period"
     ],
@@ -78,24 +78,45 @@
     ],
     "action_targets": {
       "record": null,
-      "archive": "archived",
-      "review": null
+      "review": null,
+      "archive": "archived"
     }
   },
   "workflow_hints": {
-    "business_objective": "Maintain the evidence trail for ongoing compliance against defined obligations.",
+    "relation_context": {
+      "related_docs": [
+        "regulatory_obligation"
+      ],
+      "borrowed_fields": [
+        "authority",
+        "due-rule context from regulatory_obligation"
+      ],
+      "inferred_roles": [
+        "compliance officer"
+      ]
+    },
     "actors": [
-      "compliance officer",
-      "owner"
+      "compliance officer"
     ],
-    "primary_transitions": [
-      "compliance_record: active -> archived"
-    ]
+    "action_actors": {
+      "record": [
+        "compliance officer"
+      ],
+      "review": [
+        "compliance officer"
+      ],
+      "archive": [
+        "compliance officer"
+      ]
+    }
   },
+  "downstream_effects": [],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "regulatory_obligation"
   ],
   "borrowed_fields": [
-    "obligation context from regulatory_obligation"
+    "authority",
+    "due-rule context from regulatory_obligation"
   ]
 }

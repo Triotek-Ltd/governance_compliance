@@ -1,44 +1,55 @@
 {
   "doc_id": "risk_register_entry",
   "doc_title": "Risk Register Entry",
-  "archetype": "ledger",
-  "doc_kind": "ledger",
+  "archetype": "workflow_case",
+  "doc_kind": "workflow_case",
   "actions": [
-    "record",
+    "create",
     "review",
-    "archive"
+    "approve",
+    "close",
+    "archive",
+    "score",
+    "mitigate",
+    "escalate",
+    "reopen"
   ],
   "lifecycle": {
-    "initial_state": "active",
+    "initial_state": "open",
     "states": [
-      "active",
+      "open",
+      "mitigated",
+      "closed",
       "archived"
     ],
     "terminal_states": [
+      "closed",
       "archived"
     ]
   },
   "related_doc_count": 2,
   "fetch_rule_count": 0,
-  "action_handler_count": 3,
+  "action_handler_count": 9,
   "archetype_profile": {
     "workflow_profile": {
-      "mode": "posting_flow",
-      "supports_reconciliation": true
+      "mode": "case_flow",
+      "supports_assignment": true,
+      "supports_escalation": true
     },
     "reporting_profile": {
       "supports_snapshots": true,
-      "supports_outputs": true
+      "supports_outputs": false
     },
     "integration_profile": {
-      "external_sync_enabled": true,
-      "tracks_external_refs": true
+      "external_sync_enabled": false
     },
     "lifecycle_states": [
-      "active",
+      "open",
+      "mitigated",
+      "closed",
       "archived"
     ],
-    "is_transactional": true
+    "is_transactional": false
   },
   "contract_summary": {
     "title_field": "title",
@@ -46,56 +57,99 @@
     "reference_field": "reference_no",
     "required_fields": [
       "title",
-      "workflow_state",
-      "posting_date"
+      "workflow_state"
     ],
     "field_purposes": {
       "workflow_state": "lifecycle_state",
-      "posting_date": "posting_date",
-      "owner": "actor_reference",
-      "review_date": "schedule_marker"
+      "review_date": "schedule_marker",
+      "related_mitigation_plan": "relation_collection",
+      "related_policy_document": "relation_collection"
     },
     "search_fields": [
       "title",
       "reference_no",
       "description",
-      "risk_no",
-      "category",
-      "owner"
+      "risk_number",
+      "risk_category",
+      "risk_owner"
     ],
     "list_columns": [
       "title",
       "reference_no",
-      "posting_date",
-      "workflow_state"
+      "workflow_state",
+      "modified"
     ],
-    "initial_state": "active",
+    "initial_state": "open",
     "lifecycle_states": [
-      "active",
+      "open",
+      "mitigated",
+      "closed",
       "archived"
     ],
     "terminal_states": [
+      "closed",
       "archived"
     ],
     "action_targets": {
-      "record": null,
+      "create": null,
+      "review": null,
+      "approve": null,
+      "close": "closed",
       "archive": "archived",
-      "review": null
+      "score": null,
+      "mitigate": null,
+      "escalate": null,
+      "reopen": null
     }
   },
   "workflow_hints": {
-    "business_objective": "Maintain the active institutional risk register and its review trail.",
+    "business_objective": "record risks, monitor treatment actions, and maintain policy updates in response to control needs",
     "actors": [
       "risk owner",
-      "compliance officer"
+      "policy owner",
+      "reviewer"
+    ],
+    "start_condition": "a risk or policy issue is identified",
+    "ordered_steps": [
+      "Record the identified risk or policy trigger."
+    ],
+    "primary_actions": [
+      "create",
+      "review"
     ],
     "primary_transitions": [
-      "risk_register_entry: active -> archived"
-    ]
+      "risk_register_entry: draft -> active"
+    ],
+    "downstream_effects": [
+      "supports compliance, audit, and business-law controls"
+    ],
+    "action_actors": {
+      "create": [
+        "risk owner"
+      ],
+      "review": [
+        "reviewer"
+      ],
+      "approve": [
+        "reviewer"
+      ],
+      "close": [
+        "risk owner"
+      ],
+      "archive": [
+        "risk owner"
+      ]
+    }
   },
+  "downstream_effects": [
+    "supports compliance, audit, and business-law controls"
+  ],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
     "mitigation_plan",
     "policy_document"
   ],
-  "borrowed_fields": []
+  "borrowed_fields": [
+    "category defaults from risk configuration if added later"
+  ]
 }

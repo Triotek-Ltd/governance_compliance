@@ -2,7 +2,7 @@
   "identity": {
     "doc_id": "risk_register_entry",
     "title": "Risk Register Entry",
-    "archetype": "ledger",
+    "archetype": "workflow_case",
     "app": "governance_compliance",
     "module": "risk_policy_management",
     "submodule": "risk_register",
@@ -14,22 +14,42 @@
     "doc_key": "risk_register_entry"
   },
   "doc_key": "risk_register_entry",
-  "doc_title": "risk_register_entry",
+  "doc_title": "Risk Register Entry",
   "allowed_actions": [
-    "record",
+    "create",
     "review",
-    "archive"
+    "approve",
+    "close",
+    "archive",
+    "score",
+    "mitigate",
+    "escalate",
+    "reopen"
   ],
   "actions": {
     "actions": [
-      "record",
+      "create",
       "review",
-      "archive"
+      "approve",
+      "close",
+      "archive",
+      "score",
+      "mitigate",
+      "escalate",
+      "reopen"
     ],
     "families": {
       "primary": [
-        "record",
+        "create",
         "review"
+      ],
+      "workflow": [
+        "submit",
+        "approve",
+        "return_for_revision",
+        "escalate",
+        "close",
+        "notify"
       ]
     }
   },
@@ -49,17 +69,23 @@
       ],
       "content": [
         "description",
-        "risk_no",
-        "category",
-        "owner",
-        "impact",
-        "likelihood",
+        "risk_number",
+        "risk_category",
+        "risk_owner",
+        "impact_score",
+        "likelihood_score",
+        "inherent_score",
+        "residual_score",
+        "controls",
+        "mitigation_actions",
         "status"
       ],
-      "relations": [],
+      "relations": [
+        "related_mitigation_plan",
+        "related_policy_document"
+      ],
       "amounts": [],
       "dates": [
-        "posting_date",
         "review_date"
       ],
       "parties": [],
@@ -148,11 +174,13 @@
         "read_only": false,
         "options": {
           "values": [
-            "active",
+            "open",
+            "mitigated",
+            "closed",
             "archived"
           ]
         },
-        "default": "active",
+        "default": "open",
         "unique": false,
         "linked_doc": null,
         "purpose": "lifecycle_state",
@@ -170,15 +198,15 @@
         }
       },
       {
-        "field_id": "posting_date",
-        "label": "Posting Date",
-        "type": "Date",
-        "required": true,
+        "field_id": "risk_number",
+        "label": "Risk Number",
+        "type": "Data",
+        "required": false,
         "read_only": false,
-        "default": "Today",
+        "default": null,
         "unique": false,
         "options": null,
-        "purpose": "posting_date",
+        "purpose": null,
         "linked_doc": null,
         "depends_on": null,
         "mandatory_depends_on": null,
@@ -194,8 +222,8 @@
         }
       },
       {
-        "field_id": "risk_no",
-        "label": "Risk No",
+        "field_id": "risk_category",
+        "label": "Risk Category",
         "type": "Data",
         "required": false,
         "read_only": false,
@@ -218,8 +246,8 @@
         }
       },
       {
-        "field_id": "category",
-        "label": "Category",
+        "field_id": "risk_owner",
+        "label": "Risk Owner",
         "type": "Data",
         "required": false,
         "read_only": false,
@@ -242,8 +270,8 @@
         }
       },
       {
-        "field_id": "owner",
-        "label": "Owner",
+        "field_id": "impact_score",
+        "label": "Impact Score",
         "type": "Data",
         "required": false,
         "read_only": false,
@@ -266,8 +294,8 @@
         }
       },
       {
-        "field_id": "impact",
-        "label": "Impact",
+        "field_id": "likelihood_score",
+        "label": "Likelihood Score",
         "type": "Data",
         "required": false,
         "read_only": false,
@@ -290,8 +318,8 @@
         }
       },
       {
-        "field_id": "likelihood",
-        "label": "Likelihood",
+        "field_id": "inherent_score",
+        "label": "Inherent Score",
         "type": "Data",
         "required": false,
         "read_only": false,
@@ -314,8 +342,56 @@
         }
       },
       {
-        "field_id": "status",
-        "label": "Status",
+        "field_id": "residual_score",
+        "label": "Residual Score",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "controls",
+        "label": "Controls",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "mitigation_actions",
+        "label": "Mitigation Actions",
         "type": "Data",
         "required": false,
         "read_only": false,
@@ -360,6 +436,78 @@
           "filterable": true,
           "sortable": true
         }
+      },
+      {
+        "field_id": "status",
+        "label": "Status",
+        "type": "Data",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": null,
+        "linked_doc": null,
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": true,
+          "list_visible": false,
+          "filterable": true,
+          "sortable": true
+        }
+      },
+      {
+        "field_id": "related_mitigation_plan",
+        "label": "Related Mitigation Plan",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "mitigation_plan",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
+      },
+      {
+        "field_id": "related_policy_document",
+        "label": "Related Policy Document",
+        "type": "Table MultiSelect",
+        "required": false,
+        "read_only": false,
+        "default": null,
+        "unique": false,
+        "options": null,
+        "purpose": "relation_collection",
+        "linked_doc": "policy_document",
+        "depends_on": null,
+        "mandatory_depends_on": null,
+        "read_only_depends_on": null,
+        "fetch_from": null,
+        "allow_on_submit": false,
+        "indexed": false,
+        "ui": {
+          "visible": false,
+          "list_visible": false,
+          "filterable": false,
+          "sortable": false
+        }
       }
     ],
     "title_field": "title",
@@ -367,9 +515,9 @@
       "title",
       "reference_no",
       "description",
-      "risk_no",
-      "category",
-      "owner"
+      "risk_number",
+      "risk_category",
+      "risk_owner"
     ],
     "sort_field": "modified",
     "sort_order": "DESC",
@@ -384,65 +532,139 @@
       "workflow_state"
     ],
     "record_contract": {
-      "doc_kind": "ledger",
+      "doc_kind": "workflow_case",
       "supports_attachments": true,
       "supports_comments": true,
       "supports_activity_log": true,
       "supports_assignments": true
     },
     "lifecycle": {
-      "initial_state": "active",
+      "initial_state": "open",
       "states": [
-        "active",
+        "open",
+        "mitigated",
+        "closed",
         "archived"
       ],
       "terminal_states": [
+        "closed",
         "archived"
       ]
     },
     "action_rules": {
-      "record": {
+      "create": {
         "allowed_in_states": [
-          "active"
+          "open",
+          "mitigated"
         ],
         "transitions_to": null
       },
       "review": {
         "allowed_in_states": [
-          "active"
+          "open",
+          "mitigated"
         ],
         "transitions_to": null
       },
+      "approve": {
+        "allowed_in_states": [
+          "open",
+          "mitigated"
+        ],
+        "transitions_to": null
+      },
+      "close": {
+        "allowed_in_states": [
+          "open",
+          "mitigated"
+        ],
+        "transitions_to": "closed"
+      },
       "archive": {
         "allowed_in_states": [
-          "active"
+          "open",
+          "mitigated"
         ],
         "transitions_to": "archived"
+      },
+      "score": {
+        "allowed_in_states": [
+          "open",
+          "mitigated"
+        ],
+        "transitions_to": null
+      },
+      "mitigate": {
+        "allowed_in_states": [
+          "open",
+          "mitigated"
+        ],
+        "transitions_to": null
+      },
+      "escalate": {
+        "allowed_in_states": [
+          "open",
+          "mitigated"
+        ],
+        "transitions_to": null
+      },
+      "reopen": {
+        "allowed_in_states": [
+          "open",
+          "mitigated"
+        ],
+        "transitions_to": null
       }
     },
     "role_action_matrix": [
       {
         "role_id": "System Manager",
         "actions": [
-          "create",
-          "update",
           "view",
           "list",
-          "record",
+          "create",
           "review",
-          "assign",
-          "track",
-          "monitor",
-          "confirm",
+          "approve",
+          "close",
+          "archive",
+          "score",
+          "mitigate",
+          "escalate",
+          "reopen"
+        ]
+      },
+      {
+        "role_id": "risk owner",
+        "actions": [
+          "view",
+          "list",
+          "create",
+          "close",
           "archive"
+        ]
+      },
+      {
+        "role_id": "policy owner",
+        "actions": [
+          "view",
+          "list"
+        ]
+      },
+      {
+        "role_id": "reviewer",
+        "actions": [
+          "view",
+          "list",
+          "review",
+          "approve"
         ]
       }
     ],
     "transaction_behavior": {
-      "is_transactional": true,
-      "transaction_kind": "ledger_entry",
+      "is_transactional": false,
+      "transaction_kind": null,
       "posting_behavior": {
-        "requires_posting": true,
+        "requires_posting": false,
         "posting_action": "post",
         "reversal_action": "cancel"
       },
@@ -489,8 +711,8 @@
       "list_columns": [
         "title",
         "reference_no",
-        "posting_date",
-        "workflow_state"
+        "workflow_state",
+        "modified"
       ],
       "default_filters": [],
       "quick_entry": false
@@ -507,7 +729,20 @@
         "show_in_related_panel": true
       }
     ],
-    "lookup_rules": [],
+    "lookup_rules": [
+      {
+        "field_id": "related_mitigation_plan",
+        "doc_id": "mitigation_plan",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      },
+      {
+        "field_id": "related_policy_document",
+        "doc_id": "policy_document",
+        "lookup_mode": "multiple",
+        "purpose": "relation_collection"
+      }
+    ],
     "fetch_rules": [],
     "reference_map": {
       "primary_reference_field": "reference_no",
@@ -515,10 +750,17 @@
     },
     "relation_rules": {
       "parent_doc": null,
-      "child_docs": [],
+      "child_docs": [
+        "mitigation_plan",
+        "policy_document"
+      ],
       "show_related_panel": true
     },
-    "borrowed_fields": [],
+    "borrowed_fields": [
+      {
+        "description": "category defaults from risk configuration if added later"
+      }
+    ],
     "ui_panels": {
       "show_activity_log": true,
       "show_comments": true,
@@ -534,29 +776,59 @@
       "supports_related_lookup": true,
       "supports_fetch_rules": true,
       "workflow_hints": {
-        "business_objective": "Maintain the active institutional risk register and its review trail.",
+        "business_objective": "record risks, monitor treatment actions, and maintain policy updates in response to control needs",
         "actors": [
           "risk owner",
-          "compliance officer"
+          "policy owner",
+          "reviewer"
+        ],
+        "start_condition": "a risk or policy issue is identified",
+        "ordered_steps": [
+          "Record the identified risk or policy trigger."
+        ],
+        "primary_actions": [
+          "create",
+          "review"
         ],
         "primary_transitions": [
-          "risk_register_entry: active -> archived"
-        ]
-      }
+          "risk_register_entry: draft -> active"
+        ],
+        "downstream_effects": [
+          "supports compliance, audit, and business-law controls"
+        ],
+        "action_actors": {
+          "create": [
+            "risk owner"
+          ],
+          "review": [
+            "reviewer"
+          ],
+          "approve": [
+            "reviewer"
+          ],
+          "close": [
+            "risk owner"
+          ],
+          "archive": [
+            "risk owner"
+          ]
+        }
+      },
+      "action_side_effects_file": "side_effects.json"
     }
   },
   "classification": {
-    "category": "source business doc",
+    "category": "workflow/support doc",
     "bundle": "administration",
-    "archetype": "ledger",
-    "doc_kind": "ledger"
+    "archetype": "workflow_case",
+    "doc_kind": "workflow_case"
   },
   "behavior": {
     "transaction_behavior": {
-      "is_transactional": true,
-      "transaction_kind": "ledger_entry",
+      "is_transactional": false,
+      "transaction_kind": null,
       "posting_behavior": {
-        "requires_posting": true,
+        "requires_posting": false,
         "posting_action": "post",
         "reversal_action": "cancel"
       },
@@ -595,7 +867,7 @@
         "track_external_refs": true
       }
     },
-    "report_boundary_classification": "source business doc",
+    "report_boundary_classification": "workflow/support doc",
     "validation_status": "ready",
     "validation_warnings": []
   },
@@ -618,20 +890,61 @@
       "reports": "reports/service.py",
       "integrations": "integrations/service.py"
     },
+    "runtime_contract": {
+      "side_effects_file": "side_effects.json"
+    },
     "action_handlers": {
       "base_dir": "actions",
       "registry": "actions/registry.py",
-      "count": 3,
+      "count": 9,
       "files": [
-        "actions/record.py",
+        "actions/create.py",
         "actions/review.py",
-        "actions/archive.py"
+        "actions/approve.py",
+        "actions/close.py",
+        "actions/archive.py",
+        "actions/score.py",
+        "actions/mitigate.py",
+        "actions/escalate.py",
+        "actions/reopen.py"
       ]
     },
     "classification": {
-      "archetype": "ledger",
-      "doc_kind": "ledger"
+      "archetype": "workflow_case",
+      "doc_kind": "workflow_case"
     }
+  },
+  "testing": {
+    "seeded": true,
+    "api_base_path": "/apis/governance_compliance/risk_policy_management/risk_register/risk_register_entry/",
+    "status_field": "workflow_state",
+    "initial_state": "open",
+    "required_fields": [
+      "title",
+      "workflow_state"
+    ],
+    "transition_scenarios": [
+      {
+        "action_id": "close",
+        "source_state": "open",
+        "target_state": "closed",
+        "disallowed_state": "closed"
+      },
+      {
+        "action_id": "archive",
+        "source_state": "open",
+        "target_state": "archived",
+        "disallowed_state": "closed"
+      }
+    ],
+    "related_docs": [
+      "mitigation_plan",
+      "policy_document"
+    ],
+    "downstream_effects": [
+      "supports compliance, audit, and business-law controls"
+    ],
+    "action_side_effects_file": "side_effects.json"
   },
   "runtime": {
     "source_of_truth": "doc_folder",
@@ -640,7 +953,8 @@
       "schema.json",
       "actions.json",
       "settings.json",
-      "logic_seed.json"
+      "logic_seed.json",
+      "side_effects.json"
     ],
     "generator": "plug.apps.doc.file_handler"
   }

@@ -14,7 +14,7 @@
     "doc_key": "compliance_record"
   },
   "doc_key": "compliance_record",
-  "doc_title": "compliance_record",
+  "doc_title": "Compliance Record",
   "allowed_actions": [
     "record",
     "review",
@@ -49,7 +49,7 @@
       ],
       "content": [
         "description",
-        "record_no",
+        "record_number",
         "period",
         "evidence_summary",
         "owner",
@@ -194,8 +194,8 @@
         }
       },
       {
-        "field_id": "record_no",
-        "label": "Record No",
+        "field_id": "record_number",
+        "label": "Record Number",
         "type": "Data",
         "required": false,
         "read_only": false,
@@ -209,10 +209,10 @@
         "read_only_depends_on": null,
         "fetch_from": null,
         "allow_on_submit": false,
-        "indexed": false,
+        "indexed": true,
         "ui": {
           "visible": true,
-          "list_visible": false,
+          "list_visible": true,
           "filterable": true,
           "sortable": true
         }
@@ -298,7 +298,7 @@
         "default": null,
         "unique": false,
         "options": null,
-        "purpose": null,
+        "purpose": "actor_reference",
         "linked_doc": null,
         "depends_on": null,
         "mandatory_depends_on": null,
@@ -343,7 +343,7 @@
       "title",
       "reference_no",
       "description",
-      "record_no",
+      "record_number",
       "obligation",
       "period"
     ],
@@ -400,16 +400,20 @@
       {
         "role_id": "System Manager",
         "actions": [
-          "create",
-          "update",
           "view",
           "list",
           "record",
           "review",
-          "assign",
-          "track",
-          "monitor",
-          "confirm",
+          "archive"
+        ]
+      },
+      {
+        "role_id": "compliance officer",
+        "actions": [
+          "view",
+          "list",
+          "record",
+          "review",
           "archive"
         ]
       }
@@ -491,7 +495,10 @@
     },
     "borrowed_fields": [
       {
-        "description": "obligation context from regulatory_obligation"
+        "description": "authority"
+      },
+      {
+        "description": "due-rule context from regulatory_obligation"
       }
     ],
     "ui_panels": {
@@ -509,15 +516,34 @@
       "supports_related_lookup": true,
       "supports_fetch_rules": true,
       "workflow_hints": {
-        "business_objective": "Maintain the evidence trail for ongoing compliance against defined obligations.",
+        "relation_context": {
+          "related_docs": [
+            "regulatory_obligation"
+          ],
+          "borrowed_fields": [
+            "authority",
+            "due-rule context from regulatory_obligation"
+          ],
+          "inferred_roles": [
+            "compliance officer"
+          ]
+        },
         "actors": [
-          "compliance officer",
-          "owner"
+          "compliance officer"
         ],
-        "primary_transitions": [
-          "compliance_record: active -> archived"
-        ]
-      }
+        "action_actors": {
+          "record": [
+            "compliance officer"
+          ],
+          "review": [
+            "compliance officer"
+          ],
+          "archive": [
+            "compliance officer"
+          ]
+        }
+      },
+      "action_side_effects_file": "side_effects.json"
     }
   },
   "classification": {
@@ -593,6 +619,9 @@
       "reports": "reports/service.py",
       "integrations": "integrations/service.py"
     },
+    "runtime_contract": {
+      "side_effects_file": "side_effects.json"
+    },
     "action_handlers": {
       "base_dir": "actions",
       "registry": "actions/registry.py",
@@ -608,6 +637,30 @@
       "doc_kind": "ledger"
     }
   },
+  "testing": {
+    "seeded": true,
+    "api_base_path": "/apis/governance_compliance/regulatory_compliance/obligations_register/compliance_record/",
+    "status_field": "workflow_state",
+    "initial_state": "active",
+    "required_fields": [
+      "title",
+      "workflow_state",
+      "posting_date"
+    ],
+    "transition_scenarios": [
+      {
+        "action_id": "archive",
+        "source_state": "active",
+        "target_state": "archived",
+        "disallowed_state": "archived"
+      }
+    ],
+    "related_docs": [
+      "regulatory_obligation"
+    ],
+    "downstream_effects": [],
+    "action_side_effects_file": "side_effects.json"
+  },
   "runtime": {
     "source_of_truth": "doc_folder",
     "generated_from": [
@@ -615,7 +668,8 @@
       "schema.json",
       "actions.json",
       "settings.json",
-      "logic_seed.json"
+      "logic_seed.json",
+      "side_effects.json"
     ],
     "generator": "plug.apps.doc.file_handler"
   }

@@ -1,6 +1,6 @@
 {
   "submodules": [
-    "corporate_records",
-    "record_access"
+    "corporate_documents",
+    "corporate_registers"
   ]
 }

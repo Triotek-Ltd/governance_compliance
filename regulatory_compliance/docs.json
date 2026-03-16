@@ -1,8 +1,8 @@
 {
   "docs": [
-    "regulatory_filing",
     "compliance_record",
-    "submission_confirmation",
-    "regulatory_obligation"
+    "regulatory_filing",
+    "regulatory_obligation",
+    "submission_confirmation"
   ]
 }

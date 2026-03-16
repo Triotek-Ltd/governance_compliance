@@ -1,77 +1,87 @@
 {
-    "display":  {
-                    "title_template":  "{title}",
-                    "subtitle_template":  "{reference_no}",
-                    "list_columns":  [
-                                         "title",
-                                         "reference_no",
-                                         "workflow_state",
-                                         "modified"
-                                     ],
-                    "default_filters":  [
-
-                                        ],
-                    "quick_entry":  false
-                },
-    "related_docs":  [
-                         {
-                             "doc_id":  "risk_register_entry",
-                             "relation_type":  "related",
-                             "show_in_related_panel":  true
-                         }
-                     ],
-    "lookup_rules":  [
-
-                     ],
-    "fetch_rules":  [
-
-                    ],
-    "reference_map":  {
-                          "primary_reference_field":  "reference_no",
-                          "reference_labels":  [
-
-                                               ]
-                      },
-    "relation_rules":  {
-                           "parent_doc":  null,
-                           "child_docs":  [
-
-                                          ],
-                           "show_related_panel":  true
-                       },
-    "borrowed_fields":  [
-                            {
-                                "description":  "risk context from risk_register_entry"
-                            }
-                        ],
-    "ui_panels":  {
-                      "show_activity_log":  true,
-                      "show_comments":  true,
-                      "show_assignments":  true,
-                      "show_related_docs":  true
-                  },
-    "integration":  {
-                        "external_refs":  [
-
-                                          ],
-                        "sync_rules":  [
-
-                                       ]
-                    },
-    "runtime_hints":  {
-                          "doc_key":  "mitigation_plan",
-                          "supports_related_lookup":  true,
-                          "supports_fetch_rules":  true,
-                          "workflow_hints":  {
-                                                 "business_objective":  "Track planned mitigation activity for active risks until closure.",
-                                                 "actors":  [
-                                                                "risk owner",
-                                                                "action owner",
-                                                                "compliance officer"
-                                                            ],
-                                                 "primary_transitions":  [
-                                                                             "mitigation_plan: open -\u003e in_progress -\u003e closed -\u003e archived"
-                                                                         ]
-                                             }
-                      }
+  "display": {
+    "title_template": "{title}",
+    "subtitle_template": "{reference_no}",
+    "list_columns": [
+      "title",
+      "reference_no",
+      "workflow_state",
+      "modified"
+    ],
+    "default_filters": [],
+    "quick_entry": false
+  },
+  "related_docs": [
+    {
+      "doc_id": "risk_register_entry",
+      "relation_type": "related",
+      "show_in_related_panel": true
+    }
+  ],
+  "lookup_rules": [],
+  "fetch_rules": [],
+  "reference_map": {
+    "primary_reference_field": "reference_no",
+    "reference_labels": []
+  },
+  "relation_rules": {
+    "parent_doc": null,
+    "child_docs": [],
+    "show_related_panel": true
+  },
+  "borrowed_fields": [
+    {
+      "description": "severity"
+    },
+    {
+      "description": "owner context from risk_register_entry"
+    }
+  ],
+  "ui_panels": {
+    "show_activity_log": true,
+    "show_comments": true,
+    "show_assignments": true,
+    "show_related_docs": true
+  },
+  "integration": {
+    "external_refs": [],
+    "sync_rules": []
+  },
+  "runtime_hints": {
+    "doc_key": "mitigation_plan",
+    "supports_related_lookup": true,
+    "supports_fetch_rules": true,
+    "workflow_hints": {
+      "relation_context": {
+        "related_docs": [
+          "risk_register_entry"
+        ],
+        "borrowed_fields": [
+          "severity",
+          "owner context from risk_register_entry"
+        ],
+        "inferred_roles": [
+          "compliance officer"
+        ]
+      },
+      "actors": [
+        "compliance officer"
+      ],
+      "action_actors": {
+        "create": [
+          "compliance officer"
+        ],
+        "assign": [
+          "compliance officer"
+        ],
+        "track": [
+          "compliance officer"
+        ],
+        "close": [
+          "compliance officer"
+        ]
+      }
+    },
+    "action_side_effects_file": "side_effects.json"
+  }
 }

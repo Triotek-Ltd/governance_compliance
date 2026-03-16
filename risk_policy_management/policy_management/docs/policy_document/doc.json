@@ -1,0 +1,27 @@
+{
+  "doc_key": "policy_document",
+  "doc_title": "Policy Document",
+  "doc_kind": "configuration",
+  "status": "draft",
+  "module_id": "risk_policy_management",
+  "submodule_id": "policy_management",
+  "app_id": "governance_compliance",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "configuration",
+  "classification": {
+    "archetype": "configuration",
+    "bundle": "administration"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "administration",
+    "app": "governance_compliance",
+    "module": "risk_policy_management",
+    "submodule": "policy_management",
+    "reference_doc_id": "policy_document",
+    "evidence_gaps": [
+      "publication",
+      "acknowledgment requirements"
+    ]
+  }
+}

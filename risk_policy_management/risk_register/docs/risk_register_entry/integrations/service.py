@@ -11,4 +11,4 @@ class IntegrationService:
         return INTEGRATION_RULES.get("sync_rules", [])
 
     def integration_profile(self) -> dict:
-        return {'external_sync_enabled': True, 'tracks_external_refs': True}
+        return {'external_sync_enabled': False}

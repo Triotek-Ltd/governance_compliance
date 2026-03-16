@@ -1,0 +1,170 @@
+{
+  "doc_id": "audit_engagement",
+  "doc_title": "Audit Engagement",
+  "archetype": "workflow_case",
+  "doc_kind": "workflow_case",
+  "actions": [
+    "create",
+    "assign",
+    "review",
+    "close",
+    "archive",
+    "accept",
+    "refer",
+    "request_clarification",
+    "escalate"
+  ],
+  "lifecycle": {
+    "initial_state": "open",
+    "states": [
+      "open",
+      "in_progress",
+      "closed",
+      "archived"
+    ],
+    "terminal_states": [
+      "closed",
+      "archived"
+    ]
+  },
+  "related_doc_count": 4,
+  "fetch_rule_count": 0,
+  "action_handler_count": 9,
+  "archetype_profile": {
+    "workflow_profile": {
+      "mode": "case_flow",
+      "supports_assignment": true,
+      "supports_escalation": true
+    },
+    "reporting_profile": {
+      "supports_snapshots": true,
+      "supports_outputs": false
+    },
+    "integration_profile": {
+      "external_sync_enabled": false
+    },
+    "lifecycle_states": [
+      "open",
+      "in_progress",
+      "closed",
+      "archived"
+    ],
+    "is_transactional": false
+  },
+  "contract_summary": {
+    "title_field": "title",
+    "status_field": "workflow_state",
+    "reference_field": "reference_no",
+    "required_fields": [
+      "title",
+      "workflow_state"
+    ],
+    "field_purposes": {
+      "workflow_state": "lifecycle_state",
+      "request_date": "schedule_marker",
+      "related_audit_document_request": "relation_collection",
+      "related_audit_finding": "relation_collection",
+      "related_audit_response_record": "relation_collection",
+      "related_corrective_action_plan": "relation_collection"
+    },
+    "search_fields": [
+      "title",
+      "reference_no",
+      "description",
+      "engagement_number",
+      "requester_name",
+      "requester_email"
+    ],
+    "list_columns": [
+      "title",
+      "reference_no",
+      "workflow_state",
+      "modified"
+    ],
+    "initial_state": "open",
+    "lifecycle_states": [
+      "open",
+      "in_progress",
+      "closed",
+      "archived"
+    ],
+    "terminal_states": [
+      "closed",
+      "archived"
+    ],
+    "action_targets": {
+      "create": null,
+      "assign": "in_progress",
+      "review": null,
+      "close": "closed",
+      "archive": "archived",
+      "accept": null,
+      "refer": null,
+      "request_clarification": null,
+      "escalate": null
+    }
+  },
+  "workflow_hints": {
+    "business_objective": "prepare evidence and responses for audit activity, then track findings to remediation closure",
+    "actors": [
+      "audit coordinator",
+      "requester",
+      "finding owner",
+      "reviewer"
+    ],
+    "start_condition": "an internal or external audit cycle begins",
+    "ordered_steps": [
+      "Open the audit engagement and confirm scope."
+    ],
+    "primary_actions": [
+      "create",
+      "review",
+      "approve"
+    ],
+    "primary_transitions": [
+      "audit_engagement: draft -> approved -> active"
+    ],
+    "downstream_effects": [
+      "supports governance assurance and remediation tracking",
+      "consulting explanations",
+      "implementation planning",
+      "user guides",
+      "demo narratives"
+    ],
+    "action_actors": {
+      "create": [
+        "audit coordinator"
+      ],
+      "assign": [
+        "audit coordinator"
+      ],
+      "review": [
+        "reviewer"
+      ],
+      "close": [
+        "finding owner"
+      ],
+      "archive": [
+        "finding owner"
+      ]
+    }
+  },
+  "downstream_effects": [
+    "supports governance assurance and remediation tracking",
+    "consulting explanations",
+    "implementation planning",
+    "user guides",
+    "demo narratives"
+  ],
+  "action_side_effects_file": "side_effects.json",
+  "related_docs": [
+    "audit_document_request",
+    "audit_finding",
+    "audit_response_record",
+    "corrective_action_plan"
+  ],
+  "borrowed_fields": [
+    "requester",
+    "business-unit context from linked party or department records"
+  ]
+}

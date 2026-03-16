@@ -1,0 +1,182 @@
+{
+  "doc_id": "regulatory_filing",
+  "doc_title": "Regulatory Filing",
+  "archetype": "transaction",
+  "doc_kind": "transaction",
+  "actions": [
+    "create",
+    "review",
+    "submit",
+    "confirm",
+    "archive",
+    "assign",
+    "mark_late",
+    "request_revision",
+    "record"
+  ],
+  "lifecycle": {
+    "initial_state": "draft",
+    "states": [
+      "draft",
+      "submitted",
+      "confirmed",
+      "archived"
+    ],
+    "terminal_states": [
+      "archived"
+    ]
+  },
+  "related_doc_count": 3,
+  "fetch_rule_count": 0,
+  "action_handler_count": 9,
+  "archetype_profile": {
+    "workflow_profile": {
+      "mode": "transaction_flow",
+      "supports_submission": true
+    },
+    "reporting_profile": {
+      "supports_snapshots": true,
+      "supports_outputs": true
+    },
+    "integration_profile": {
+      "external_sync_enabled": true,
+      "tracks_external_refs": true
+    },
+    "lifecycle_states": [
+      "draft",
+      "submitted",
+      "confirmed",
+      "archived"
+    ],
+    "is_transactional": true
+  },
+  "contract_summary": {
+    "title_field": "title",
+    "status_field": "workflow_state",
+    "reference_field": "reference_no",
+    "required_fields": [
+      "title",
+      "workflow_state",
+      "transaction_date"
+    ],
+    "field_purposes": {
+      "workflow_state": "lifecycle_state",
+      "transaction_date": "transaction_date",
+      "party": "primary_party",
+      "currency": "currency_code",
+      "total_amount": "total_amount",
+      "due_date": "schedule_marker",
+      "submission_date": "schedule_marker",
+      "related_submission_confirmation": "relation_collection",
+      "related_compliance_record": "relation_collection"
+    },
+    "search_fields": [
+      "title",
+      "reference_no",
+      "description",
+      "filing_number",
+      "obligation",
+      "filing_type"
+    ],
+    "list_columns": [
+      "title",
+      "reference_no",
+      "transaction_date",
+      "party",
+      "total_amount",
+      "workflow_state"
+    ],
+    "initial_state": "draft",
+    "lifecycle_states": [
+      "draft",
+      "submitted",
+      "confirmed",
+      "archived"
+    ],
+    "terminal_states": [
+      "archived"
+    ],
+    "action_targets": {
+      "create": null,
+      "review": null,
+      "submit": "submitted",
+      "confirm": "confirmed",
+      "archive": "archived",
+      "assign": null,
+      "mark_late": null,
+      "request_revision": null,
+      "record": null
+    }
+  },
+  "workflow_hints": {
+    "business_objective": "track obligations, prepare filings, submit them, and retain submission evidence",
+    "actors": [
+      "compliance officer",
+      "preparer",
+      "approver",
+      "regulator-facing submitter"
+    ],
+    "start_condition": "a regulatory obligation or due date becomes actionable",
+    "ordered_steps": [
+      "Create the filing record for the reporting period or event.",
+      "Prepare submission content and supporting documents.",
+      "Submit and confirm the filing.",
+      "Mark lateness, issues, or revisions if necessary.",
+      "Archive the completed regulatory record set."
+    ],
+    "primary_actions": [
+      "create",
+      "assign",
+      "review",
+      "record",
+      "request_revision",
+      "submit",
+      "confirm",
+      "mark_late",
+      "archive"
+    ],
+    "primary_transitions": [
+      "regulatory_filing: draft",
+      "regulatory_filing: draft -> submitted -> confirmed"
+    ],
+    "downstream_effects": [
+      "compliance history becomes available to audit, legal, risk, and reporting flows"
+    ],
+    "action_actors": {
+      "create": [
+        "compliance officer"
+      ],
+      "review": [
+        "preparer"
+      ],
+      "submit": [
+        "compliance officer"
+      ],
+      "confirm": [
+        "approver"
+      ],
+      "archive": [
+        "compliance officer"
+      ],
+      "assign": [
+        "compliance officer"
+      ],
+      "record": [
+        "compliance officer"
+      ]
+    }
+  },
+  "downstream_effects": [
+    "compliance history becomes available to audit, legal, risk, and reporting flows"
+  ],
+  "action_side_effects_file": "side_effects.json",
+  "related_docs": [
+    "regulatory_obligation",
+    "submission_confirmation",
+    "compliance_record"
+  ],
+  "borrowed_fields": [
+    "authority",
+    "due rules from regulatory_obligation"
+  ]
+}

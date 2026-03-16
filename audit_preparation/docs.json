@@ -1,9 +1,9 @@
 {
   "docs": [
-    "audit_finding",
-    "audit_engagement",
     "audit_document_request",
-    "corrective_action_plan",
-    "audit_response_record"
+    "audit_engagement",
+    "audit_finding",
+    "audit_response_record",
+    "corrective_action_plan"
   ]
 }

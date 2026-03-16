@@ -8,10 +8,10 @@ ARCHETYPE = "ledger"
 INITIAL_STATE = 'active'
 STATES = ['active', 'archived']
 TERMINAL_STATES = ['archived']
-ACTION_RULES = {'record': {'allowed_in_states': 'active', 'transitions_to': None}, 'archive': {'allowed_in_states': 'active', 'transitions_to': 'archived'}, 'review': {'allowed_in_states': 'active', 'transitions_to': None}}
+ACTION_RULES = {'record': {'allowed_in_states': ['active'], 'transitions_to': None}, 'review': {'allowed_in_states': ['active'], 'transitions_to': None}, 'archive': {'allowed_in_states': ['active'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {'business_objective': 'Maintain the evidence trail for ongoing compliance against defined obligations.', 'actors': ['compliance officer', 'owner'], 'primary_transitions': ['compliance_record: active -> archived']}
+WORKFLOW_HINTS = {'relation_context': {'related_docs': ['regulatory_obligation'], 'borrowed_fields': ['authority', 'due-rule context from regulatory_obligation'], 'inferred_roles': ['compliance officer']}, 'actors': ['compliance officer'], 'action_actors': {'record': ['compliance officer'], 'review': ['compliance officer'], 'archive': ['compliance officer']}}
 
 class WorkflowService:
     def allowed_actions_for_state(self, state: str | None) -> list[str]:

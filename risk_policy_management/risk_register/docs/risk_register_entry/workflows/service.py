@@ -4,14 +4,14 @@ from __future__ import annotations
 
 
 DOC_ID = "risk_register_entry"
-ARCHETYPE = "ledger"
-INITIAL_STATE = 'active'
-STATES = ['active', 'archived']
-TERMINAL_STATES = ['archived']
-ACTION_RULES = {'record': {'allowed_in_states': 'active', 'transitions_to': None}, 'archive': {'allowed_in_states': 'active', 'transitions_to': 'archived'}, 'review': {'allowed_in_states': 'active', 'transitions_to': None}}
+ARCHETYPE = "workflow_case"
+INITIAL_STATE = 'open'
+STATES = ['open', 'mitigated', 'closed', 'archived']
+TERMINAL_STATES = ['closed', 'archived']
+ACTION_RULES = {'create': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'review': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'approve': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'close': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': 'archived'}, 'score': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'mitigate': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'escalate': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'reopen': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {'business_objective': 'Maintain the active institutional risk register and its review trail.', 'actors': ['risk owner', 'compliance officer'], 'primary_transitions': ['risk_register_entry: active -> archived']}
+WORKFLOW_HINTS = {'business_objective': 'record risks, monitor treatment actions, and maintain policy updates in response to control needs', 'actors': ['risk owner', 'policy owner', 'reviewer'], 'start_condition': 'a risk or policy issue is identified', 'ordered_steps': ['Record the identified risk or policy trigger.'], 'primary_actions': ['create', 'review'], 'primary_transitions': ['risk_register_entry: draft -> active'], 'downstream_effects': ['supports compliance, audit, and business-law controls'], 'action_actors': {'create': ['risk owner'], 'review': ['reviewer'], 'approve': ['reviewer'], 'close': ['risk owner'], 'archive': ['risk owner']}}
 
 class WorkflowService:
     def allowed_actions_for_state(self, state: str | None) -> list[str]:
@@ -56,4 +56,4 @@ class WorkflowService:
         }
 
     def workflow_profile(self) -> dict:
-        return {'mode': 'posting_flow', 'supports_reconciliation': True}
+        return {'mode': 'case_flow', 'supports_assignment': True, 'supports_escalation': True}

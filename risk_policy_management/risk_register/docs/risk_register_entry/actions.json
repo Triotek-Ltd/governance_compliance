@@ -36,9 +36,15 @@
     ]
   },
   "actions": [
-    "record",
+    "create",
     "review",
-    "archive"
+    "approve",
+    "close",
+    "archive",
+    "score",
+    "mitigate",
+    "escalate",
+    "reopen"
   ],
   "available_optional_actions": [
     "submit",
@@ -60,14 +66,21 @@
   ],
   "ui": {
     "primary_actions": [
-      "record",
+      "create",
       "review"
     ],
     "record_actions": [
       "view",
       "archive"
     ],
-    "workflow_actions": []
+    "workflow_actions": [
+      "submit",
+      "approve",
+      "return_for_revision",
+      "escalate",
+      "close",
+      "notify"
+    ]
   },
   "routing": {
     "action_endpoint": "docs/risk_register_entry/<id>/actions/<action_id>"

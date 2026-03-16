@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from manifold.core.services.relation_resolution import RelationResolutionService
+from core.services.relation_resolution import RelationResolutionService
 
 
 DOC_ID = "regulatory_obligation"
-RELATED_DOCS = [{'doc_id': 'regulatory_filing', 'relation_type': 'related', 'show_in_related_panel': True}, {'doc_id': 'compliance_record', 'relation_type': 'related', 'show_in_related_panel': True}]
+RELATED_DOCS = [{'doc_id': 'regulatory_filing', 'relation_type': 'related', 'show_in_related_panel': True}]
 FETCH_RULES = []
 
 BORROWED_FIELDS = []

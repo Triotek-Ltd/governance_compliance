@@ -8,7 +8,7 @@ ACTION_ID = "close"
 ACTION_RULE = {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': 'closed'}
 
 STATE_FIELD = 'workflow_state'
-WORKFLOW_HINTS = {'business_objective': 'Track planned mitigation activity for active risks until closure.', 'actors': ['risk owner', 'action owner', 'compliance officer'], 'primary_transitions': ['mitigation_plan: open -> in_progress -> closed -> archived']}
+WORKFLOW_HINTS = {'relation_context': {'related_docs': ['risk_register_entry'], 'borrowed_fields': ['severity', 'owner context from risk_register_entry'], 'inferred_roles': ['compliance officer']}, 'actors': ['compliance officer'], 'action_actors': {'create': ['compliance officer'], 'assign': ['compliance officer'], 'track': ['compliance officer'], 'close': ['compliance officer']}}
 
 def handle_close(payload: dict, context: dict | None = None) -> dict:
     context = context or {}

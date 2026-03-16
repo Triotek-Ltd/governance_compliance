@@ -1,0 +1,189 @@
+{
+  "doc_id": "legal_agreement",
+  "doc_title": "Legal Agreement",
+  "archetype": "transaction",
+  "doc_kind": "transaction",
+  "actions": [
+    "create",
+    "review",
+    "submit",
+    "approve",
+    "issue",
+    "renew",
+    "archive",
+    "route",
+    "request_revision",
+    "execute",
+    "expire"
+  ],
+  "lifecycle": {
+    "initial_state": "draft",
+    "states": [
+      "draft",
+      "approved",
+      "executed",
+      "expired",
+      "renewed",
+      "archived"
+    ],
+    "terminal_states": [
+      "archived"
+    ]
+  },
+  "related_doc_count": 2,
+  "fetch_rule_count": 0,
+  "action_handler_count": 11,
+  "archetype_profile": {
+    "workflow_profile": {
+      "mode": "transaction_flow",
+      "supports_submission": true
+    },
+    "reporting_profile": {
+      "supports_snapshots": true,
+      "supports_outputs": true
+    },
+    "integration_profile": {
+      "external_sync_enabled": true,
+      "tracks_external_refs": true
+    },
+    "lifecycle_states": [
+      "draft",
+      "approved",
+      "executed",
+      "expired",
+      "renewed",
+      "archived"
+    ],
+    "is_transactional": true
+  },
+  "contract_summary": {
+    "title_field": "title",
+    "status_field": "workflow_state",
+    "reference_field": "reference_no",
+    "required_fields": [
+      "title",
+      "workflow_state",
+      "transaction_date"
+    ],
+    "field_purposes": {
+      "workflow_state": "lifecycle_state",
+      "transaction_date": "transaction_date",
+      "party": "primary_party",
+      "currency": "currency_code",
+      "total_amount": "total_amount",
+      "counterparty": "party_reference",
+      "effective_date": "schedule_marker",
+      "expiration_date": "schedule_marker",
+      "routing_status": "status_flag",
+      "related_legal_review_case": "relation_collection",
+      "related_contract_obligation": "relation_collection"
+    },
+    "search_fields": [
+      "title",
+      "reference_no",
+      "description",
+      "agreement_number",
+      "agreement_type",
+      "counterparty"
+    ],
+    "list_columns": [
+      "title",
+      "reference_no",
+      "transaction_date",
+      "party",
+      "total_amount",
+      "workflow_state"
+    ],
+    "initial_state": "draft",
+    "lifecycle_states": [
+      "draft",
+      "approved",
+      "executed",
+      "expired",
+      "renewed",
+      "archived"
+    ],
+    "terminal_states": [
+      "archived"
+    ],
+    "action_targets": {
+      "create": null,
+      "review": null,
+      "submit": "approved",
+      "approve": "approved",
+      "issue": "executed",
+      "renew": "renewed",
+      "archive": "archived",
+      "route": null,
+      "request_revision": null,
+      "execute": null,
+      "expire": null
+    }
+  },
+  "workflow_hints": {
+    "business_objective": "draft and review legal agreements, then track the obligations they create",
+    "actors": [
+      "legal reviewer",
+      "business owner",
+      "approver"
+    ],
+    "start_condition": "a contract or legal obligation requires review",
+    "ordered_steps": [
+      "Draft the agreement and key terms.",
+      "Execute the agreement and register obligations.",
+      "Monitor renewal, expiry, or breach conditions."
+    ],
+    "primary_actions": [
+      "create",
+      "update",
+      "execute",
+      "record",
+      "track",
+      "review",
+      "renew",
+      "close"
+    ],
+    "primary_transitions": [
+      "legal_agreement: draft",
+      "legal_agreement: draft -> approved -> executed -> active"
+    ],
+    "downstream_effects": [
+      "supports legal compliance and obligation management"
+    ],
+    "action_actors": {
+      "create": [
+        "legal reviewer"
+      ],
+      "review": [
+        "legal reviewer"
+      ],
+      "submit": [
+        "legal reviewer"
+      ],
+      "approve": [
+        "approver"
+      ],
+      "issue": [
+        "business owner"
+      ],
+      "archive": [
+        "business owner"
+      ],
+      "execute": [
+        "approver"
+      ]
+    }
+  },
+  "downstream_effects": [
+    "supports legal compliance and obligation management"
+  ],
+  "action_side_effects_file": "side_effects.json",
+  "related_docs": [
+    "legal_review_case",
+    "contract_obligation"
+  ],
+  "borrowed_fields": [
+    "agreement-type defaults",
+    "signer details from linked configuration records"
+  ]
+}

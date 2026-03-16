@@ -1,15 +1,15 @@
 {
   "doc_key": "risk_register_entry",
   "doc_title": "Risk Register Entry",
-  "doc_kind": "ledger",
+  "doc_kind": "workflow_case",
   "status": "draft",
   "module_id": "risk_policy_management",
   "submodule_id": "risk_register",
   "app_id": "governance_compliance",
   "base_action_profile": "base_record_actions",
-  "doc_archetype": "ledger",
+  "doc_archetype": "workflow_case",
   "classification": {
-    "archetype": "ledger",
+    "archetype": "workflow_case",
     "bundle": "administration"
   },
   "planning_source": {
@@ -20,8 +20,8 @@
     "submodule": "risk_register",
     "reference_doc_id": "risk_register_entry",
     "evidence_gaps": [
-      "risk scoring method",
-      "category taxonomy"
+      "scoring matrix",
+      "control or mitigation detail model"
     ]
   }
 }

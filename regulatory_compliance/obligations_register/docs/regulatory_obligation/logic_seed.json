@@ -18,7 +18,7 @@
       "archived"
     ]
   },
-  "related_doc_count": 2,
+  "related_doc_count": 1,
   "fetch_rule_count": 0,
   "action_handler_count": 3,
   "archetype_profile": {
@@ -49,13 +49,14 @@
     ],
     "field_purposes": {
       "workflow_state": "lifecycle_state",
-      "owner": "actor_reference"
+      "owner": "actor_reference",
+      "related_regulatory_filing": "relation_collection"
     },
     "search_fields": [
       "title",
       "reference_no",
       "description",
-      "obligation_no",
+      "obligation_number",
       "authority",
       "frequency"
     ],
@@ -75,23 +76,49 @@
     ],
     "action_targets": {
       "create": null,
-      "archive": "archived",
-      "update": null
+      "update": null,
+      "archive": "archived"
     }
   },
   "workflow_hints": {
-    "business_objective": "Define the active regulatory duties that the institution must satisfy and monitor.",
+    "business_objective": "track obligations, prepare filings, submit them, and retain submission evidence",
     "actors": [
       "compliance officer",
-      "owner"
+      "preparer",
+      "approver",
+      "regulator-facing submitter"
     ],
-    "primary_transitions": [
-      "regulatory_obligation: active -> archived"
-    ]
+    "start_condition": "a regulatory obligation or due date becomes actionable",
+    "ordered_steps": [
+      "Identify the applicable obligation and due date."
+    ],
+    "primary_actions": [
+      "create",
+      "update",
+      "record"
+    ],
+    "primary_transitions": [],
+    "downstream_effects": [
+      "compliance history becomes available to audit, legal, risk, and reporting flows"
+    ],
+    "action_actors": {
+      "create": [
+        "compliance officer"
+      ],
+      "update": [
+        "compliance officer"
+      ],
+      "archive": [
+        "compliance officer"
+      ]
+    }
   },
+  "downstream_effects": [
+    "compliance history becomes available to audit, legal, risk, and reporting flows"
+  ],
+  "action_side_effects_file": "side_effects.json",
   "related_docs": [
-    "regulatory_filing",
-    "compliance_record"
+    "regulatory_filing"
   ],
   "borrowed_fields": []
 }

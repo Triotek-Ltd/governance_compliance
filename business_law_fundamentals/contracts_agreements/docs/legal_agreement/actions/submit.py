@@ -1,0 +1,26 @@
+"""Action handler seed for legal_agreement:submit."""
+
+from __future__ import annotations
+
+
+DOC_ID = "legal_agreement"
+ACTION_ID = "submit"
+ACTION_RULE = {'allowed_in_states': ['draft', 'approved', 'executed', 'expired', 'renewed'], 'transitions_to': 'approved'}
+
+STATE_FIELD = 'workflow_state'
+WORKFLOW_HINTS = {'business_objective': 'draft and review legal agreements, then track the obligations they create', 'actors': ['legal reviewer', 'business owner', 'approver'], 'start_condition': 'a contract or legal obligation requires review', 'ordered_steps': ['Draft the agreement and key terms.', 'Execute the agreement and register obligations.', 'Monitor renewal, expiry, or breach conditions.'], 'primary_actions': ['create', 'update', 'execute', 'record', 'track', 'review', 'renew', 'close'], 'primary_transitions': ['legal_agreement: draft', 'legal_agreement: draft -> approved -> executed -> active'], 'downstream_effects': ['supports legal compliance and obligation management'], 'action_actors': {'create': ['legal reviewer'], 'review': ['legal reviewer'], 'submit': ['legal reviewer'], 'approve': ['approver'], 'issue': ['business owner'], 'archive': ['business owner'], 'execute': ['approver']}}
+
+def handle_submit(payload: dict, context: dict | None = None) -> dict:
+    context = context or {}
+    next_state = ACTION_RULE.get("transitions_to")
+    updates = {STATE_FIELD: next_state} if STATE_FIELD and next_state else {}
+    return {
+        "doc_id": DOC_ID,
+        "action_id": ACTION_ID,
+        "payload": payload,
+        "context": context,
+        "allowed_in_states": ACTION_RULE.get("allowed_in_states", []),
+        "next_state": next_state,
+        "updates": updates,
+        "workflow_objective": WORKFLOW_HINTS.get("business_objective"),
+    }

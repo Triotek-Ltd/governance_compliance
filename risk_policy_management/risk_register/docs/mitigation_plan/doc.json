@@ -20,7 +20,8 @@
     "submodule": "risk_register",
     "reference_doc_id": "mitigation_plan",
     "evidence_gaps": [
-      "action-line detail model"
+      "action-line detail",
+      "overdue rules"
     ]
   }
 }

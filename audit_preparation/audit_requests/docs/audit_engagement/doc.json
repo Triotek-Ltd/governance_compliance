@@ -1,0 +1,27 @@
+{
+  "doc_key": "audit_engagement",
+  "doc_title": "Audit Engagement",
+  "doc_kind": "workflow_case",
+  "status": "draft",
+  "module_id": "audit_preparation",
+  "submodule_id": "audit_requests",
+  "app_id": "governance_compliance",
+  "base_action_profile": "base_record_actions",
+  "doc_archetype": "workflow_case",
+  "classification": {
+    "archetype": "workflow_case",
+    "bundle": "administration"
+  },
+  "planning_source": {
+    "type": "reference_doc_generation_manifest",
+    "bundle": "administration",
+    "app": "governance_compliance",
+    "module": "audit_preparation",
+    "submodule": "audit_requests",
+    "reference_doc_id": "audit_engagement",
+    "evidence_gaps": [
+      "intake questionnaire model",
+      "advisory vs investigative split"
+    ]
+  }
+}

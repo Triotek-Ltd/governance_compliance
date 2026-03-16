@@ -14,7 +14,7 @@
     "doc_key": "mitigation_plan"
   },
   "doc_key": "mitigation_plan",
-  "doc_title": "mitigation_plan",
+  "doc_title": "Mitigation Plan",
   "allowed_actions": [
     "create",
     "assign",
@@ -59,7 +59,7 @@
       ],
       "content": [
         "description",
-        "plan_no",
+        "plan_number",
         "control_actions",
         "owner",
         "progress_note"
@@ -181,8 +181,8 @@
         }
       },
       {
-        "field_id": "plan_no",
-        "label": "Plan No",
+        "field_id": "plan_number",
+        "label": "Plan Number",
         "type": "Data",
         "required": false,
         "read_only": false,
@@ -196,10 +196,10 @@
         "read_only_depends_on": null,
         "fetch_from": null,
         "allow_on_submit": false,
-        "indexed": false,
+        "indexed": true,
         "ui": {
           "visible": true,
-          "list_visible": false,
+          "list_visible": true,
           "filterable": true,
           "sortable": true
         }
@@ -261,7 +261,7 @@
         "default": null,
         "unique": false,
         "options": null,
-        "purpose": null,
+        "purpose": "actor_reference",
         "linked_doc": null,
         "depends_on": null,
         "mandatory_depends_on": null,
@@ -330,7 +330,7 @@
       "title",
       "reference_no",
       "description",
-      "plan_no",
+      "plan_number",
       "risk",
       "control_actions"
     ],
@@ -379,7 +379,7 @@
           "open",
           "in_progress"
         ],
-        "transitions_to": null
+        "transitions_to": "in_progress"
       },
       "track": {
         "allowed_in_states": [
@@ -400,17 +400,23 @@
       {
         "role_id": "System Manager",
         "actions": [
-          "create",
-          "update",
           "view",
           "list",
-          "record",
-          "review",
+          "create",
           "assign",
           "track",
-          "monitor",
-          "confirm",
-          "archive"
+          "close"
+        ]
+      },
+      {
+        "role_id": "compliance officer",
+        "actions": [
+          "view",
+          "list",
+          "create",
+          "assign",
+          "track",
+          "close"
         ]
       }
     ],
@@ -491,7 +497,10 @@
     },
     "borrowed_fields": [
       {
-        "description": "risk context from risk_register_entry"
+        "description": "severity"
+      },
+      {
+        "description": "owner context from risk_register_entry"
       }
     ],
     "ui_panels": {
@@ -509,16 +518,37 @@
       "supports_related_lookup": true,
       "supports_fetch_rules": true,
       "workflow_hints": {
-        "business_objective": "Track planned mitigation activity for active risks until closure.",
+        "relation_context": {
+          "related_docs": [
+            "risk_register_entry"
+          ],
+          "borrowed_fields": [
+            "severity",
+            "owner context from risk_register_entry"
+          ],
+          "inferred_roles": [
+            "compliance officer"
+          ]
+        },
         "actors": [
-          "risk owner",
-          "action owner",
           "compliance officer"
         ],
-        "primary_transitions": [
-          "mitigation_plan: open -> in_progress -> closed -> archived"
-        ]
-      }
+        "action_actors": {
+          "create": [
+            "compliance officer"
+          ],
+          "assign": [
+            "compliance officer"
+          ],
+          "track": [
+            "compliance officer"
+          ],
+          "close": [
+            "compliance officer"
+          ]
+        }
+      },
+      "action_side_effects_file": "side_effects.json"
     }
   },
   "classification": {
@@ -594,6 +624,9 @@
       "reports": "reports/service.py",
       "integrations": "integrations/service.py"
     },
+    "runtime_contract": {
+      "side_effects_file": "side_effects.json"
+    },
     "action_handlers": {
       "base_dir": "actions",
       "registry": "actions/registry.py",
@@ -610,6 +643,35 @@
       "doc_kind": "workflow_case"
     }
   },
+  "testing": {
+    "seeded": true,
+    "api_base_path": "/apis/governance_compliance/risk_policy_management/risk_register/mitigation_plan/",
+    "status_field": "workflow_state",
+    "initial_state": "open",
+    "required_fields": [
+      "title",
+      "workflow_state"
+    ],
+    "transition_scenarios": [
+      {
+        "action_id": "assign",
+        "source_state": "open",
+        "target_state": "in_progress",
+        "disallowed_state": "closed"
+      },
+      {
+        "action_id": "close",
+        "source_state": "open",
+        "target_state": "closed",
+        "disallowed_state": "closed"
+      }
+    ],
+    "related_docs": [
+      "risk_register_entry"
+    ],
+    "downstream_effects": [],
+    "action_side_effects_file": "side_effects.json"
+  },
   "runtime": {
     "source_of_truth": "doc_folder",
     "generated_from": [
@@ -617,7 +679,8 @@
       "schema.json",
       "actions.json",
       "settings.json",
-      "logic_seed.json"
+      "logic_seed.json",
+      "side_effects.json"
     ],
     "generator": "plug.apps.doc.file_handler"
   }

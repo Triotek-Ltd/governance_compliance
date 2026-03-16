@@ -1,79 +1,91 @@
 {
-    "display":  {
-                    "title_template":  "{title}",
-                    "subtitle_template":  "{reference_no}",
-                    "list_columns":  [
-                                         "title",
-                                         "reference_no",
-                                         "workflow_state",
-                                         "modified"
-                                     ],
-                    "default_filters":  [
-
-                                        ],
-                    "quick_entry":  true
-                },
-    "related_docs":  [
-                         {
-                             "doc_id":  "regulatory_filing",
-                             "relation_type":  "related",
-                             "show_in_related_panel":  true
-                         },
-                         {
-                             "doc_id":  "compliance_record",
-                             "relation_type":  "related",
-                             "show_in_related_panel":  true
-                         }
-                     ],
-    "lookup_rules":  [
-
-                     ],
-    "fetch_rules":  [
-
-                    ],
-    "reference_map":  {
-                          "primary_reference_field":  "reference_no",
-                          "reference_labels":  [
-
-                                               ]
-                      },
-    "relation_rules":  {
-                           "parent_doc":  null,
-                           "child_docs":  [
-
-                                          ],
-                           "show_related_panel":  true
-                       },
-    "borrowed_fields":  [
-
-                        ],
-    "ui_panels":  {
-                      "show_activity_log":  true,
-                      "show_comments":  true,
-                      "show_assignments":  true,
-                      "show_related_docs":  true
-                  },
-    "integration":  {
-                        "external_refs":  [
-
-                                          ],
-                        "sync_rules":  [
-
-                                       ]
-                    },
-    "runtime_hints":  {
-                          "doc_key":  "regulatory_obligation",
-                          "supports_related_lookup":  true,
-                          "supports_fetch_rules":  true,
-                          "workflow_hints":  {
-                                                 "business_objective":  "Define the active regulatory duties that the institution must satisfy and monitor.",
-                                                 "actors":  [
-                                                                "compliance officer",
-                                                                "owner"
-                                                            ],
-                                                 "primary_transitions":  [
-                                                                             "regulatory_obligation: active -\u003e archived"
-                                                                         ]
-                                             }
-                      }
+  "display": {
+    "title_template": "{title}",
+    "subtitle_template": "{reference_no}",
+    "list_columns": [
+      "title",
+      "reference_no",
+      "workflow_state",
+      "modified"
+    ],
+    "default_filters": [],
+    "quick_entry": true
+  },
+  "related_docs": [
+    {
+      "doc_id": "regulatory_filing",
+      "relation_type": "related",
+      "show_in_related_panel": true
+    }
+  ],
+  "lookup_rules": [
+    {
+      "field_id": "related_regulatory_filing",
+      "doc_id": "regulatory_filing",
+      "lookup_mode": "multiple",
+      "purpose": "relation_collection"
+    }
+  ],
+  "fetch_rules": [],
+  "reference_map": {
+    "primary_reference_field": "reference_no",
+    "reference_labels": []
+  },
+  "relation_rules": {
+    "parent_doc": null,
+    "child_docs": [
+      "regulatory_filing"
+    ],
+    "show_related_panel": true
+  },
+  "borrowed_fields": [],
+  "ui_panels": {
+    "show_activity_log": true,
+    "show_comments": true,
+    "show_assignments": true,
+    "show_related_docs": true
+  },
+  "integration": {
+    "external_refs": [],
+    "sync_rules": []
+  },
+  "runtime_hints": {
+    "doc_key": "regulatory_obligation",
+    "supports_related_lookup": true,
+    "supports_fetch_rules": true,
+    "workflow_hints": {
+      "business_objective": "track obligations, prepare filings, submit them, and retain submission evidence",
+      "actors": [
+        "compliance officer",
+        "preparer",
+        "approver",
+        "regulator-facing submitter"
+      ],
+      "start_condition": "a regulatory obligation or due date becomes actionable",
+      "ordered_steps": [
+        "Identify the applicable obligation and due date."
+      ],
+      "primary_actions": [
+        "create",
+        "update",
+        "record"
+      ],
+      "primary_transitions": [],
+      "downstream_effects": [
+        "compliance history becomes available to audit, legal, risk, and reporting flows"
+      ],
+      "action_actors": {
+        "create": [
+          "compliance officer"
+        ],
+        "update": [
+          "compliance officer"
+        ],
+        "archive": [
+          "compliance officer"
+        ]
+      }
+    },
+    "action_side_effects_file": "side_effects.json"
+  }
 }

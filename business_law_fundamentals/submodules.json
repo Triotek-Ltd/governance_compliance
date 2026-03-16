@@ -1,0 +1,6 @@
+{
+  "submodules": [
+    "contracts_agreements",
+    "legal_compliance"
+  ]
+}

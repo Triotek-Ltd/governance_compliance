@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
-from manifold.core.services.relation_resolution import RelationResolutionService
+from core.services.relation_resolution import RelationResolutionService
 
 
 DOC_ID = "mitigation_plan"
 RELATED_DOCS = [{'doc_id': 'risk_register_entry', 'relation_type': 'related', 'show_in_related_panel': True}]
 FETCH_RULES = []
 
-BORROWED_FIELDS = [{'description': 'risk context from risk_register_entry'}]
+BORROWED_FIELDS = [{'description': 'severity'}, {'description': 'owner context from risk_register_entry'}]
 
 class RelationService:
     def _bridge(self, context: dict | None = None) -> RelationResolutionService | None:

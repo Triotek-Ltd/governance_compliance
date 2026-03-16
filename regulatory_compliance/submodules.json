@@ -1,6 +1,6 @@
 {
   "submodules": [
-    "filings_tracking",
+    "filings_reports",
     "obligations_register"
   ]
 }

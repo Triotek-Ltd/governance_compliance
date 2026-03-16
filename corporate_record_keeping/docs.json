@@ -1,7 +1,7 @@
 {
   "docs": [
     "corporate_access_request",
-    "corporate_register_entry",
-    "corporate_document"
+    "corporate_document",
+    "corporate_register_entry"
   ]
 }

@@ -1,0 +1,135 @@
+{
+  "doc_id": "audit_document_request",
+  "doc_title": "Audit Document Request",
+  "archetype": "workflow_case",
+  "doc_kind": "workflow_case",
+  "actions": [
+    "create",
+    "assign",
+    "confirm",
+    "close"
+  ],
+  "lifecycle": {
+    "initial_state": "open",
+    "states": [
+      "open",
+      "requested",
+      "provided",
+      "closed"
+    ],
+    "terminal_states": [
+      "closed"
+    ]
+  },
+  "related_doc_count": 1,
+  "fetch_rule_count": 0,
+  "action_handler_count": 4,
+  "archetype_profile": {
+    "workflow_profile": {
+      "mode": "case_flow",
+      "supports_assignment": true,
+      "supports_escalation": true
+    },
+    "reporting_profile": {
+      "supports_snapshots": true,
+      "supports_outputs": false
+    },
+    "integration_profile": {
+      "external_sync_enabled": false
+    },
+    "lifecycle_states": [
+      "open",
+      "requested",
+      "provided",
+      "closed"
+    ],
+    "is_transactional": false
+  },
+  "contract_summary": {
+    "title_field": "title",
+    "status_field": "workflow_state",
+    "reference_field": "reference_no",
+    "required_fields": [
+      "title",
+      "workflow_state"
+    ],
+    "field_purposes": {
+      "workflow_state": "lifecycle_state",
+      "requested_from": "actor_reference",
+      "due_date": "schedule_marker",
+      "provided_date": "schedule_marker"
+    },
+    "search_fields": [
+      "title",
+      "reference_no",
+      "description",
+      "request_number",
+      "engagement",
+      "requested_item"
+    ],
+    "list_columns": [
+      "title",
+      "reference_no",
+      "workflow_state",
+      "modified"
+    ],
+    "initial_state": "open",
+    "lifecycle_states": [
+      "open",
+      "requested",
+      "provided",
+      "closed"
+    ],
+    "terminal_states": [
+      "closed"
+    ],
+    "action_targets": {
+      "create": null,
+      "assign": "requested",
+      "confirm": "closed",
+      "close": "closed"
+    }
+  },
+  "workflow_hints": {
+    "relation_context": {
+      "related_docs": [
+        "audit_engagement"
+      ],
+      "borrowed_fields": [
+        "engagement title",
+        "business area",
+        "requester from audit_engagement"
+      ],
+      "inferred_roles": [
+        "auditor"
+      ]
+    },
+    "actors": [
+      "auditor"
+    ],
+    "action_actors": {
+      "create": [
+        "auditor"
+      ],
+      "assign": [
+        "auditor"
+      ],
+      "confirm": [
+        "auditor"
+      ],
+      "close": [
+        "auditor"
+      ]
+    }
+  },
+  "downstream_effects": [],
+  "action_side_effects_file": "side_effects.json",
+  "related_docs": [
+    "audit_engagement"
+  ],
+  "borrowed_fields": [
+    "engagement title",
+    "business area",
+    "requester from audit_engagement"
+  ]
+}

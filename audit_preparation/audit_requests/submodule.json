@@ -1,0 +1,8 @@
+{
+  "id": "audit_requests",
+  "title": "Audit Requests",
+  "app_id": "governance_compliance",
+  "module_id": "audit_preparation",
+  "type": "submodule",
+  "status": "draft"
+}

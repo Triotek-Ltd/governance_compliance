@@ -1,7 +1,6 @@
 {
   "submodules": [
-    "requests_findings",
-    "engagements",
-    "responses"
+    "audit_findings",
+    "audit_requests"
   ]
 }
