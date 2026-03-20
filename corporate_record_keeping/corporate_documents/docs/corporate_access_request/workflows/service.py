@@ -2,13 +2,15 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 
 DOC_ID = "corporate_access_request"
 ARCHETYPE = "workflow_case"
 INITIAL_STATE = 'open'
 STATES = ['open', 'approved', 'closed', 'archived']
 TERMINAL_STATES = ['closed', 'archived']
-ACTION_RULES = {'create': {'allowed_in_states': ['open', 'approved'], 'transitions_to': None}, 'approve': {'allowed_in_states': ['open', 'approved'], 'transitions_to': 'approved'}, 'close': {'allowed_in_states': ['open', 'approved'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['open', 'approved'], 'transitions_to': 'archived'}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['open', 'approved'], 'transitions_to': None}, 'approve': {'allowed_in_states': ['open', 'approved'], 'transitions_to': 'approved'}, 'close': {'allowed_in_states': ['open', 'approved'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['open', 'approved'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
 WORKFLOW_HINTS = {'business_objective': 'preserve formal corporate records, track them in registers, and govern access and retention', 'actors': ['governance officer', 'custodian', 'approver'], 'start_condition': 'a corporate legal or governance document must be retained', 'ordered_steps': ['Control document access requests.'], 'primary_actions': ['create', 'submit', 'approve', 'close'], 'primary_transitions': ['corporate_access_request: draft -> in_review -> approved -> closed'], 'downstream_effects': ['supports legal, audit, and regulatory controls'], 'action_actors': {'create': ['governance officer'], 'approve': ['approver'], 'close': ['governance officer'], 'archive': ['governance officer']}}
@@ -29,7 +31,7 @@ class WorkflowService:
 
     def next_state_for(self, action_id: str) -> str | None:
         rule = ACTION_RULES.get(action_id, {})
-        return rule.get("transitions_to")
+        return cast(str | None, rule.get("transitions_to"))
 
     def apply_action(self, action_id: str, state: str | None) -> dict:
         if not self.is_action_allowed(action_id, state):

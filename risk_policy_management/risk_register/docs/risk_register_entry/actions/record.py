@@ -2,17 +2,19 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 
 DOC_ID = "risk_register_entry"
 ACTION_ID = "record"
-ACTION_RULE = {'allowed_in_states': 'active', 'transitions_to': None}
+ACTION_RULE: dict[str, Any] = {'allowed_in_states': 'active', 'transitions_to': None}
 
 STATE_FIELD = 'workflow_state'
 WORKFLOW_HINTS = {'business_objective': 'Maintain the active institutional risk register and its review trail.', 'actors': ['risk owner', 'compliance officer'], 'primary_transitions': ['risk_register_entry: active -> archived']}
 
 def handle_record(payload: dict, context: dict | None = None) -> dict:
     context = context or {}
-    next_state = ACTION_RULE.get("transitions_to")
+    next_state = cast(str | None, ACTION_RULE.get("transitions_to"))
     updates = {STATE_FIELD: next_state} if STATE_FIELD and next_state else {}
     return {
         "doc_id": DOC_ID,

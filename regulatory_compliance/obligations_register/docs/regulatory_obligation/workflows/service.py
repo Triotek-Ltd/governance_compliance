@@ -2,13 +2,15 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 
 DOC_ID = "regulatory_obligation"
 ARCHETYPE = "configuration"
 INITIAL_STATE = 'active'
 STATES = ['active', 'archived']
 TERMINAL_STATES = ['archived']
-ACTION_RULES = {'create': {'allowed_in_states': ['active'], 'transitions_to': None}, 'update': {'allowed_in_states': ['active'], 'transitions_to': None}, 'archive': {'allowed_in_states': ['active'], 'transitions_to': 'archived'}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['active'], 'transitions_to': None}, 'update': {'allowed_in_states': ['active'], 'transitions_to': None}, 'archive': {'allowed_in_states': ['active'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
 WORKFLOW_HINTS = {'business_objective': 'track obligations, prepare filings, submit them, and retain submission evidence', 'actors': ['compliance officer', 'preparer', 'approver', 'regulator-facing submitter'], 'start_condition': 'a regulatory obligation or due date becomes actionable', 'ordered_steps': ['Identify the applicable obligation and due date.'], 'primary_actions': ['create', 'update', 'record'], 'primary_transitions': [], 'downstream_effects': ['compliance history becomes available to audit, legal, risk, and reporting flows'], 'action_actors': {'create': ['compliance officer'], 'update': ['compliance officer'], 'archive': ['compliance officer']}}
@@ -29,7 +31,7 @@ class WorkflowService:
 
     def next_state_for(self, action_id: str) -> str | None:
         rule = ACTION_RULES.get(action_id, {})
-        return rule.get("transitions_to")
+        return cast(str | None, rule.get("transitions_to"))
 
     def apply_action(self, action_id: str, state: str | None) -> dict:
         if not self.is_action_allowed(action_id, state):

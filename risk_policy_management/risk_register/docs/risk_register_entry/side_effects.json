@@ -14,5 +14,29 @@
         "workflow_state": "archived"
       }
     }
+  ],
+  "approve": [
+    {
+      "type": "create_record",
+      "target_doc": "mitigation_plan",
+      "values": {
+        "title": {
+          "$template": "Mitigation Plan for {title|reference_no|id}"
+        },
+        "reference_no": {
+          "$template": "MITIGATION_PLAN-{reference_no|id}"
+        },
+        "source_reference": {
+          "$from": [
+            "reference_no",
+            "id"
+          ]
+        },
+        "source_doc_id": {
+          "$template": "{id}"
+        },
+        "approval_status": "approved"
+      }
+    }
   ]
 }

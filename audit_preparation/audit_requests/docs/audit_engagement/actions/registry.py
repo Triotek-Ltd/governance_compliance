@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 
 DOC_ID = "audit_engagement"
 ALLOWED_ACTIONS = ['create', 'assign', 'review', 'close', 'archive', 'accept', 'refer', 'request_clarification', 'escalate']
-ACTION_RULES = {'create': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}, 'assign': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': 'in_progress'}, 'review': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}, 'close': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': 'archived'}, 'accept': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}, 'refer': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}, 'request_clarification': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}, 'escalate': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}, 'assign': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': 'in_progress'}, 'review': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}, 'close': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': 'archived'}, 'accept': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}, 'refer': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}, 'request_clarification': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}, 'escalate': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}}
 
 STATE_FIELD = 'workflow_state'
 

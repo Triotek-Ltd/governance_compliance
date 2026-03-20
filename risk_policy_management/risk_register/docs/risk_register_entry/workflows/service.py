@@ -2,13 +2,15 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 
 DOC_ID = "risk_register_entry"
 ARCHETYPE = "workflow_case"
 INITIAL_STATE = 'open'
 STATES = ['open', 'mitigated', 'closed', 'archived']
 TERMINAL_STATES = ['closed', 'archived']
-ACTION_RULES = {'create': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'review': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'approve': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'close': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': 'archived'}, 'score': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'mitigate': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'escalate': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'reopen': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'review': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'approve': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'close': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': 'archived'}, 'score': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'mitigate': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'escalate': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'reopen': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}}
 
 STATE_FIELD = 'workflow_state'
 WORKFLOW_HINTS = {'business_objective': 'record risks, monitor treatment actions, and maintain policy updates in response to control needs', 'actors': ['risk owner', 'policy owner', 'reviewer'], 'start_condition': 'a risk or policy issue is identified', 'ordered_steps': ['Record the identified risk or policy trigger.'], 'primary_actions': ['create', 'review'], 'primary_transitions': ['risk_register_entry: draft -> active'], 'downstream_effects': ['supports compliance, audit, and business-law controls'], 'action_actors': {'create': ['risk owner'], 'review': ['reviewer'], 'approve': ['reviewer'], 'close': ['risk owner'], 'archive': ['risk owner']}}
@@ -29,7 +31,7 @@ class WorkflowService:
 
     def next_state_for(self, action_id: str) -> str | None:
         rule = ACTION_RULES.get(action_id, {})
-        return rule.get("transitions_to")
+        return cast(str | None, rule.get("transitions_to"))
 
     def apply_action(self, action_id: str, state: str | None) -> dict:
         if not self.is_action_allowed(action_id, state):

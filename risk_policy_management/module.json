@@ -4,5 +4,513 @@
   "app_id": "governance_compliance",
   "type": "module",
   "status": "draft",
-  "supports_submodules": true
+  "supports_submodules": true,
+  "ui": {
+    "icon_key": "apps",
+    "accent": "#246f89",
+    "logo_image": null,
+    "cover_image": null
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "module",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "docs",
+      "flatten_submodules_in_ui": true
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "Risk Policy Management KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "risk_policy_management",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "Risk Policy Management summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "risk_policy_management",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "Risk Policy Management charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "risk_policy_management",
+          "metric_family": "trend"
+        },
+        "chart_specs": [
+          {
+            "id": "risk_policy_management_trend_line",
+            "label": "Risk Policy Management trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "risk_policy_management_volume_column",
+            "label": "Risk Policy Management volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "risk_policy_management_distribution_donut",
+            "label": "Risk Policy Management distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "policy_document_trend_line",
+            "label": "Policy Document trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "policy_document_volume_column",
+            "label": "Policy Document volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "policy_document_distribution_donut",
+            "label": "Policy Document distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "mitigation_plan_trend_line",
+            "label": "Mitigation Plan trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "mitigation_plan_volume_column",
+            "label": "Mitigation Plan volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "mitigation_plan_distribution_donut",
+            "label": "Mitigation Plan distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "risk_register_entry_trend_line",
+            "label": "Risk Register Entry trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "risk_register_entry_volume_column",
+            "label": "Risk Register Entry volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "risk_register_entry_distribution_donut",
+            "label": "Risk Register Entry distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          }
+        ]
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "Risk Policy Management reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "risk_policy_management",
+          "metric_family": "reporting"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "risk_policy_management",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "risk_policy_management",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "risk_policy_management",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "risk_policy_management",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "Risk Policy Management Overview",
+        "report_type": "dashboard_summary",
+        "surface": "module"
+      },
+      {
+        "id": "trend_report",
+        "label": "Risk Policy Management Trends",
+        "report_type": "trend_analysis",
+        "surface": "module"
+      },
+      {
+        "id": "summary_report",
+        "label": "Policy Document Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Policy Document Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "risk_policy_management_trend_line",
+        "label": "Risk Policy Management trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "risk_policy_management_volume_column",
+        "label": "Risk Policy Management volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "risk_policy_management_distribution_donut",
+        "label": "Risk Policy Management distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "policy_document_trend_line",
+        "label": "Policy Document trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "policy_document_volume_column",
+        "label": "Policy Document volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "policy_document_distribution_donut",
+        "label": "Policy Document distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "mitigation_plan_trend_line",
+        "label": "Mitigation Plan trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "mitigation_plan_volume_column",
+        "label": "Mitigation Plan volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "mitigation_plan_distribution_donut",
+        "label": "Mitigation Plan distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "risk_register_entry_trend_line",
+        "label": "Risk Register Entry trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "risk_register_entry_volume_column",
+        "label": "Risk Register Entry volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "risk_register_entry_distribution_donut",
+        "label": "Risk Register Entry distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ],
+    "source_docs": [],
+    "source_fields": [],
+    "child_sources": [
+      {
+        "id": "policy_document",
+        "title": "Policy Document",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "mitigation_plan",
+        "title": "Mitigation Plan",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "risk_register_entry",
+        "title": "Risk Register Entry",
+        "surface": null,
+        "source_docs": []
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "risk_register_entry",
+      "mitigation_plan",
+      "policy_document"
+    ],
+    "upstream_docs": [
+      "risk_register_entry",
+      "mitigation_plan",
+      "policy_document"
+    ],
+    "downstream_docs": [
+      "risk_register_entry",
+      "mitigation_plan"
+    ],
+    "actors": [
+      "legal reviewer",
+      "business owner",
+      "approver",
+      "compliance officer",
+      "risk owner",
+      "policy owner",
+      "reviewer"
+    ],
+    "downstream_effects": [
+      "supports legal compliance and obligation management",
+      "supports compliance, audit, and business-law controls"
+    ],
+    "emits_records": [
+      {
+        "action_id": "approve",
+        "target_doc": "risk_register_entry",
+        "effect_type": "create_record"
+      },
+      {
+        "action_id": "approve",
+        "target_doc": "mitigation_plan",
+        "effect_type": "create_record"
+      }
+    ],
+    "handoff_targets": [
+      "risk_register_entry",
+      "mitigation_plan",
+      "policy_document"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "policy_document",
+        "target_doc": "risk_register_entry",
+        "relation": "references"
+      },
+      {
+        "source_doc": "policy_document",
+        "target_doc": "risk_register_entry",
+        "relation": "create_record",
+        "action_id": "approve"
+      },
+      {
+        "source_doc": "mitigation_plan",
+        "target_doc": "risk_register_entry",
+        "relation": "references"
+      },
+      {
+        "source_doc": "risk_register_entry",
+        "target_doc": "mitigation_plan",
+        "relation": "references"
+      },
+      {
+        "source_doc": "risk_register_entry",
+        "target_doc": "policy_document",
+        "relation": "references"
+      },
+      {
+        "source_doc": "risk_register_entry",
+        "target_doc": "mitigation_plan",
+        "relation": "create_record",
+        "action_id": "approve"
+      }
+    ],
+    "operating_graph": {
+      "nodes": [
+        {
+          "id": "risk_register_entry",
+          "kind": "doc"
+        },
+        {
+          "id": "mitigation_plan",
+          "kind": "doc"
+        },
+        {
+          "id": "policy_document",
+          "kind": "doc"
+        }
+      ],
+      "edges": [
+        {
+          "source_doc": "policy_document",
+          "target_doc": "risk_register_entry",
+          "relation": "references"
+        },
+        {
+          "source_doc": "policy_document",
+          "target_doc": "risk_register_entry",
+          "relation": "create_record",
+          "action_id": "approve"
+        },
+        {
+          "source_doc": "mitigation_plan",
+          "target_doc": "risk_register_entry",
+          "relation": "references"
+        },
+        {
+          "source_doc": "risk_register_entry",
+          "target_doc": "mitigation_plan",
+          "relation": "references"
+        },
+        {
+          "source_doc": "risk_register_entry",
+          "target_doc": "policy_document",
+          "relation": "references"
+        },
+        {
+          "source_doc": "risk_register_entry",
+          "target_doc": "mitigation_plan",
+          "relation": "create_record",
+          "action_id": "approve"
+        }
+      ]
+    }
+  },
+  "contract_version": 1
 }

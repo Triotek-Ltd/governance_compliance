@@ -21,6 +21,18 @@
       "fields": {
         "workflow_state": "approved"
       }
+    },
+    {
+      "type": "create_record",
+      "target_doc": "legal_review_case",
+      "values": {
+        "title": {
+          "$template": "Legal Review Case for {title|reference_no|id}"
+        },
+        "reference_no": {
+          "$template": "LEGAL_REVIEW_CASE-{reference_no|id}"
+        }
+      }
     }
   ],
   "archive": [
@@ -36,6 +48,20 @@
       "type": "update_current",
       "fields": {
         "workflow_state": "executed"
+      }
+    }
+  ],
+  "issue": [
+    {
+      "type": "create_record",
+      "target_doc": "legal_review_case",
+      "values": {
+        "title": {
+          "$template": "Legal Review Case for {title|reference_no|id}"
+        },
+        "reference_no": {
+          "$template": "LEGAL_REVIEW_CASE-{reference_no|id}"
+        }
       }
     }
   ]

@@ -2,17 +2,19 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 
 DOC_ID = "audit_document_request"
 ACTION_ID = "close"
-ACTION_RULE = {'allowed_in_states': ['open', 'requested', 'provided'], 'transitions_to': 'closed'}
+ACTION_RULE: dict[str, Any] = {'allowed_in_states': ['open', 'requested', 'provided'], 'transitions_to': 'closed'}
 
 STATE_FIELD = 'workflow_state'
 WORKFLOW_HINTS = {'relation_context': {'related_docs': ['audit_engagement'], 'borrowed_fields': ['engagement title', 'business area', 'requester from audit_engagement'], 'inferred_roles': ['auditor']}, 'actors': ['auditor'], 'action_actors': {'create': ['auditor'], 'assign': ['auditor'], 'confirm': ['auditor'], 'close': ['auditor']}}
 
 def handle_close(payload: dict, context: dict | None = None) -> dict:
     context = context or {}
-    next_state = ACTION_RULE.get("transitions_to")
+    next_state = cast(str | None, ACTION_RULE.get("transitions_to"))
     updates = {STATE_FIELD: next_state} if STATE_FIELD and next_state else {}
     return {
         "doc_id": DOC_ID,

@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 
 DOC_ID = "audit_finding"
 ALLOWED_ACTIONS = ['create', 'review', 'confirm', 'close', 'archive']
-ACTION_RULES = {'create': {'allowed_in_states': ['open', 'confirmed', 'resolved'], 'transitions_to': None}, 'review': {'allowed_in_states': ['open', 'confirmed', 'resolved'], 'transitions_to': None}, 'confirm': {'allowed_in_states': ['open', 'confirmed', 'resolved'], 'transitions_to': 'confirmed'}, 'close': {'allowed_in_states': ['open', 'confirmed', 'resolved'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['open', 'confirmed', 'resolved'], 'transitions_to': 'archived'}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['open', 'confirmed', 'resolved'], 'transitions_to': None}, 'review': {'allowed_in_states': ['open', 'confirmed', 'resolved'], 'transitions_to': None}, 'confirm': {'allowed_in_states': ['open', 'confirmed', 'resolved'], 'transitions_to': 'confirmed'}, 'close': {'allowed_in_states': ['open', 'confirmed', 'resolved'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['open', 'confirmed', 'resolved'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
 

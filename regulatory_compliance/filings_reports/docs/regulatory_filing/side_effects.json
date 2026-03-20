@@ -29,6 +29,18 @@
       "fields": {
         "workflow_state": "confirmed"
       }
+    },
+    {
+      "type": "create_record",
+      "target_doc": "submission_confirmation",
+      "values": {
+        "title": {
+          "$template": "Submission Confirmation for {title|reference_no|id}"
+        },
+        "reference_no": {
+          "$template": "SUBMISSION_CONFIRMATION-{reference_no|id}"
+        }
+      }
     }
   ],
   "archive": [

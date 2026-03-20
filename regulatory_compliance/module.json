@@ -4,5 +4,578 @@
   "app_id": "governance_compliance",
   "type": "module",
   "status": "draft",
-  "supports_submodules": true
+  "supports_submodules": true,
+  "ui": {
+    "icon_key": "apps",
+    "accent": "#246f89",
+    "logo_image": null,
+    "cover_image": null
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "module",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "docs",
+      "flatten_submodules_in_ui": true
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "Regulatory Compliance KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "regulatory_compliance",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "Regulatory Compliance summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "regulatory_compliance",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "Regulatory Compliance charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "regulatory_compliance",
+          "metric_family": "trend"
+        },
+        "chart_specs": [
+          {
+            "id": "regulatory_compliance_trend_line",
+            "label": "Regulatory Compliance trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "regulatory_compliance_volume_column",
+            "label": "Regulatory Compliance volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "regulatory_compliance_distribution_donut",
+            "label": "Regulatory Compliance distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "regulatory_filing_trend_line",
+            "label": "Regulatory Filing trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "regulatory_filing_volume_column",
+            "label": "Regulatory Filing volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "regulatory_filing_distribution_donut",
+            "label": "Regulatory Filing distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "submission_confirmation_trend_line",
+            "label": "Submission Confirmation trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "submission_confirmation_volume_column",
+            "label": "Submission Confirmation volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "submission_confirmation_distribution_donut",
+            "label": "Submission Confirmation distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "compliance_record_trend_line",
+            "label": "Compliance Record trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "compliance_record_volume_column",
+            "label": "Compliance Record volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "compliance_record_distribution_donut",
+            "label": "Compliance Record distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "regulatory_obligation_trend_line",
+            "label": "Regulatory Obligation trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "regulatory_obligation_volume_column",
+            "label": "Regulatory Obligation volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "regulatory_obligation_distribution_donut",
+            "label": "Regulatory Obligation distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          }
+        ]
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "Regulatory Compliance reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "regulatory_compliance",
+          "metric_family": "reporting"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "regulatory_compliance",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "regulatory_compliance",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "regulatory_compliance",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "regulatory_compliance",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "Regulatory Compliance Overview",
+        "report_type": "dashboard_summary",
+        "surface": "module"
+      },
+      {
+        "id": "trend_report",
+        "label": "Regulatory Compliance Trends",
+        "report_type": "trend_analysis",
+        "surface": "module"
+      },
+      {
+        "id": "summary_report",
+        "label": "Regulatory Filing Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Regulatory Filing Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "regulatory_compliance_trend_line",
+        "label": "Regulatory Compliance trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "regulatory_compliance_volume_column",
+        "label": "Regulatory Compliance volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "regulatory_compliance_distribution_donut",
+        "label": "Regulatory Compliance distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "regulatory_filing_trend_line",
+        "label": "Regulatory Filing trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "regulatory_filing_volume_column",
+        "label": "Regulatory Filing volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "regulatory_filing_distribution_donut",
+        "label": "Regulatory Filing distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "submission_confirmation_trend_line",
+        "label": "Submission Confirmation trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "submission_confirmation_volume_column",
+        "label": "Submission Confirmation volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "submission_confirmation_distribution_donut",
+        "label": "Submission Confirmation distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "compliance_record_trend_line",
+        "label": "Compliance Record trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "compliance_record_volume_column",
+        "label": "Compliance Record volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "compliance_record_distribution_donut",
+        "label": "Compliance Record distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "regulatory_obligation_trend_line",
+        "label": "Regulatory Obligation trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "regulatory_obligation_volume_column",
+        "label": "Regulatory Obligation volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "regulatory_obligation_distribution_donut",
+        "label": "Regulatory Obligation distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ],
+    "source_docs": [],
+    "source_fields": [],
+    "child_sources": [
+      {
+        "id": "regulatory_filing",
+        "title": "Regulatory Filing",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "submission_confirmation",
+        "title": "Submission Confirmation",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "compliance_record",
+        "title": "Compliance Record",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "regulatory_obligation",
+        "title": "Regulatory Obligation",
+        "surface": null,
+        "source_docs": []
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "regulatory_obligation",
+      "submission_confirmation",
+      "compliance_record",
+      "regulatory_filing"
+    ],
+    "upstream_docs": [
+      "regulatory_obligation",
+      "submission_confirmation",
+      "compliance_record",
+      "regulatory_filing"
+    ],
+    "downstream_docs": [
+      "submission_confirmation"
+    ],
+    "actors": [
+      "compliance officer",
+      "preparer",
+      "approver",
+      "regulator-facing submitter"
+    ],
+    "downstream_effects": [
+      "compliance history becomes available to audit, legal, risk, and reporting flows"
+    ],
+    "emits_records": [
+      {
+        "action_id": "confirm",
+        "target_doc": "submission_confirmation",
+        "effect_type": "create_record"
+      }
+    ],
+    "handoff_targets": [
+      "regulatory_obligation",
+      "submission_confirmation",
+      "compliance_record",
+      "regulatory_filing"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "regulatory_filing",
+        "target_doc": "regulatory_obligation",
+        "relation": "references"
+      },
+      {
+        "source_doc": "regulatory_filing",
+        "target_doc": "submission_confirmation",
+        "relation": "references"
+      },
+      {
+        "source_doc": "regulatory_filing",
+        "target_doc": "compliance_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "regulatory_filing",
+        "target_doc": "submission_confirmation",
+        "relation": "create_record",
+        "action_id": "confirm"
+      },
+      {
+        "source_doc": "submission_confirmation",
+        "target_doc": "regulatory_filing",
+        "relation": "references"
+      },
+      {
+        "source_doc": "compliance_record",
+        "target_doc": "regulatory_obligation",
+        "relation": "references"
+      },
+      {
+        "source_doc": "regulatory_obligation",
+        "target_doc": "regulatory_filing",
+        "relation": "references"
+      }
+    ],
+    "operating_graph": {
+      "nodes": [
+        {
+          "id": "regulatory_obligation",
+          "kind": "doc"
+        },
+        {
+          "id": "submission_confirmation",
+          "kind": "doc"
+        },
+        {
+          "id": "compliance_record",
+          "kind": "doc"
+        },
+        {
+          "id": "regulatory_filing",
+          "kind": "doc"
+        }
+      ],
+      "edges": [
+        {
+          "source_doc": "regulatory_filing",
+          "target_doc": "regulatory_obligation",
+          "relation": "references"
+        },
+        {
+          "source_doc": "regulatory_filing",
+          "target_doc": "submission_confirmation",
+          "relation": "references"
+        },
+        {
+          "source_doc": "regulatory_filing",
+          "target_doc": "compliance_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "regulatory_filing",
+          "target_doc": "submission_confirmation",
+          "relation": "create_record",
+          "action_id": "confirm"
+        },
+        {
+          "source_doc": "submission_confirmation",
+          "target_doc": "regulatory_filing",
+          "relation": "references"
+        },
+        {
+          "source_doc": "compliance_record",
+          "target_doc": "regulatory_obligation",
+          "relation": "references"
+        },
+        {
+          "source_doc": "regulatory_obligation",
+          "target_doc": "regulatory_filing",
+          "relation": "references"
+        }
+      ]
+    }
+  },
+  "contract_version": 1
 }

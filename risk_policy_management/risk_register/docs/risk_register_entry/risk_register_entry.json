@@ -15,6 +15,254 @@
   },
   "doc_key": "risk_register_entry",
   "doc_title": "Risk Register Entry",
+  "ui": {
+    "icon_key": "checklist",
+    "accent": "#2d6a4f",
+    "logo_image": null,
+    "cover_image": null,
+    "preferred_views": [
+      "list",
+      "table",
+      "detail",
+      "report"
+    ],
+    "default_density": "comfortable"
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "doc",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "records",
+      "flatten_submodules_in_ui": false,
+      "views": [
+        "list",
+        "table",
+        "detail",
+        "report"
+      ]
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "Risk Register Entry KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "risk_register_entry",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "Risk Register Entry summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "risk_register_entry",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "Risk Register Entry charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "risk_register_entry",
+          "metric_family": "trend"
+        }
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "Risk Register Entry reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "risk_register_entry",
+          "metric_family": "reporting"
+        }
+      },
+      {
+        "id": "records",
+        "type": "record_table",
+        "title": "Risk Register Entry records",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "doc",
+          "entity_id": "risk_register_entry",
+          "metric_family": "records"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "risk_register_entry",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "risk_register_entry",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "risk_register_entry",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "doc",
+        "entity_id": "risk_register_entry",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "Risk Register Entry Overview",
+        "report_type": "dashboard_summary",
+        "surface": "doc"
+      },
+      {
+        "id": "trend_report",
+        "label": "Risk Register Entry Trends",
+        "report_type": "trend_analysis",
+        "surface": "doc"
+      },
+      {
+        "id": "summary_report",
+        "label": "Risk Register Entry Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Risk Register Entry Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "supports_outputs": true,
+    "supports_print_formats": true,
+    "default_views": [
+      "summary",
+      "trend",
+      "report_table"
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "risk_register_entry_trend_line",
+        "label": "Risk Register Entry trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "risk_register_entry_volume_column",
+        "label": "Risk Register Entry volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "risk_register_entry_distribution_donut",
+        "label": "Risk Register Entry distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "mitigation_plan",
+      "policy_document"
+    ],
+    "upstream_docs": [
+      "mitigation_plan",
+      "policy_document"
+    ],
+    "downstream_docs": [
+      "mitigation_plan"
+    ],
+    "borrowed_fields": [
+      "category defaults from risk configuration if added later"
+    ],
+    "emits_records": [
+      {
+        "action_id": "approve",
+        "target_doc": "mitigation_plan",
+        "effect_type": "create_record"
+      }
+    ],
+    "downstream_effects": [
+      "supports compliance, audit, and business-law controls"
+    ],
+    "actors": [
+      "risk owner",
+      "policy owner",
+      "reviewer"
+    ],
+    "handoff_targets": [
+      "mitigation_plan",
+      "policy_document"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "risk_register_entry",
+        "target_doc": "mitigation_plan",
+        "relation": "references"
+      },
+      {
+        "source_doc": "risk_register_entry",
+        "target_doc": "policy_document",
+        "relation": "references"
+      },
+      {
+        "source_doc": "risk_register_entry",
+        "target_doc": "mitigation_plan",
+        "relation": "create_record",
+        "action_id": "approve"
+      }
+    ]
+  },
   "allowed_actions": [
     "create",
     "review",
@@ -483,7 +731,8 @@
           "list_visible": false,
           "filterable": false,
           "sortable": false
-        }
+        },
+        "relation_kind": "explicit"
       },
       {
         "field_id": "related_policy_document",
@@ -507,7 +756,8 @@
           "list_visible": false,
           "filterable": false,
           "sortable": false
-        }
+        },
+        "relation_kind": "explicit"
       }
     ],
     "title_field": "title",
@@ -631,7 +881,9 @@
           "mitigate",
           "escalate",
           "reopen"
-        ]
+        ],
+        "scope": "system",
+        "ownership": "platform"
       },
       {
         "role_id": "risk owner",
@@ -639,16 +891,21 @@
           "view",
           "list",
           "create",
+          "update",
           "close",
           "archive"
-        ]
+        ],
+        "scope": "document",
+        "ownership": "functional"
       },
       {
         "role_id": "policy owner",
         "actions": [
           "view",
           "list"
-        ]
+        ],
+        "scope": "document",
+        "ownership": "functional"
       },
       {
         "role_id": "reviewer",
@@ -657,7 +914,9 @@
           "list",
           "review",
           "approve"
-        ]
+        ],
+        "scope": "review",
+        "ownership": "oversight"
       }
     ],
     "transaction_behavior": {
@@ -715,7 +974,125 @@
         "modified"
       ],
       "default_filters": [],
-      "quick_entry": false
+      "quick_entry": false,
+      "form_layout": {
+        "version": 1,
+        "tabs": [
+          {
+            "id": "overview",
+            "label": "Overview",
+            "sections": [
+              {
+                "id": "identity",
+                "label": "Identity",
+                "columns": [
+                  {
+                    "id": "identity_column_1",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "title"
+                    ]
+                  },
+                  {
+                    "id": "identity_column_2",
+                    "label": "",
+                    "width": 6,
+                    "fieldIds": [
+                      "reference_no"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "dates",
+                "label": "Dates",
+                "columns": [
+                  {
+                    "id": "dates_column_1",
+                    "label": "",
+                    "width": 12,
+                    "fieldIds": [
+                      "review_date"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "status",
+                "label": "Workflow",
+                "columns": [
+                  {
+                    "id": "status_column_1",
+                    "label": "",
+                    "width": 12,
+                    "fieldIds": [
+                      "workflow_state"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "details",
+            "label": "Details",
+            "sections": [
+              {
+                "id": "content",
+                "label": "Details",
+                "columns": [
+                  {
+                    "id": "content_column_1",
+                    "label": "",
+                    "width": 4,
+                    "fieldIds": [
+                      "risk_number",
+                      "impact_score",
+                      "residual_score",
+                      "status"
+                    ]
+                  },
+                  {
+                    "id": "content_column_2",
+                    "label": "",
+                    "width": 4,
+                    "fieldIds": [
+                      "risk_category",
+                      "likelihood_score",
+                      "controls"
+                    ]
+                  },
+                  {
+                    "id": "content_column_3",
+                    "label": "",
+                    "width": 4,
+                    "fieldIds": [
+                      "risk_owner",
+                      "inherent_score",
+                      "mitigation_actions"
+                    ]
+                  }
+                ]
+              },
+              {
+                "id": "content_details",
+                "label": "Description",
+                "columns": [
+                  {
+                    "id": "content_details_column_1",
+                    "label": "",
+                    "width": 12,
+                    "fieldIds": [
+                      "description"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
     },
     "related_docs": [
       {
@@ -765,7 +1142,11 @@
       "show_activity_log": true,
       "show_comments": true,
       "show_assignments": true,
-      "show_related_docs": true
+      "show_related_docs": true,
+      "show_kpis": true,
+      "show_summaries": true,
+      "show_charts": true,
+      "show_reports": true
     },
     "integration": {
       "external_refs": [],
@@ -815,6 +1196,17 @@
         }
       },
       "action_side_effects_file": "side_effects.json"
+    },
+    "dashboard": {
+      "metric_blocks": [
+        "kpis",
+        "summaries",
+        "charts",
+        "reports",
+        "records"
+      ],
+      "default_view": "list",
+      "reporting_surface": "doc"
     }
   },
   "classification": {
@@ -868,8 +1260,11 @@
       }
     },
     "report_boundary_classification": "workflow/support doc",
-    "validation_status": "ready",
-    "validation_warnings": []
+    "validation_status": "warning",
+    "validation_warnings": [
+      "helper_relation_field:related_mitigation_plan",
+      "helper_relation_field:related_policy_document"
+    ]
   },
   "business_logic": {
     "seeded": true,
@@ -919,6 +1314,17 @@
     "api_base_path": "/apis/governance_compliance/risk_policy_management/risk_register/risk_register_entry/",
     "status_field": "workflow_state",
     "initial_state": "open",
+    "actions": [
+      "create",
+      "review",
+      "approve",
+      "close",
+      "archive",
+      "score",
+      "mitigate",
+      "escalate",
+      "reopen"
+    ],
     "required_fields": [
       "title",
       "workflow_state"
@@ -943,6 +1349,59 @@
     ],
     "downstream_effects": [
       "supports compliance, audit, and business-law controls"
+    ],
+    "role_action_matrix": [
+      {
+        "role_id": "System Manager",
+        "actions": [
+          "view",
+          "list",
+          "create",
+          "review",
+          "approve",
+          "close",
+          "archive",
+          "score",
+          "mitigate",
+          "escalate",
+          "reopen"
+        ],
+        "scope": "system",
+        "ownership": "platform"
+      },
+      {
+        "role_id": "risk owner",
+        "actions": [
+          "view",
+          "list",
+          "create",
+          "update",
+          "close",
+          "archive"
+        ],
+        "scope": "document",
+        "ownership": "functional"
+      },
+      {
+        "role_id": "policy owner",
+        "actions": [
+          "view",
+          "list"
+        ],
+        "scope": "document",
+        "ownership": "functional"
+      },
+      {
+        "role_id": "reviewer",
+        "actions": [
+          "view",
+          "list",
+          "review",
+          "approve"
+        ],
+        "scope": "review",
+        "ownership": "oversight"
+      }
     ],
     "action_side_effects_file": "side_effects.json"
   },

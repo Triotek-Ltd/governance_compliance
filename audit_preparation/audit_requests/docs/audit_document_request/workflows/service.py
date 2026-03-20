@@ -2,13 +2,15 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 
 DOC_ID = "audit_document_request"
 ARCHETYPE = "workflow_case"
 INITIAL_STATE = 'open'
 STATES = ['open', 'requested', 'provided', 'closed']
 TERMINAL_STATES = ['closed']
-ACTION_RULES = {'create': {'allowed_in_states': ['open', 'requested', 'provided'], 'transitions_to': None}, 'assign': {'allowed_in_states': ['open', 'requested', 'provided'], 'transitions_to': 'requested'}, 'confirm': {'allowed_in_states': ['open', 'requested', 'provided'], 'transitions_to': 'closed'}, 'close': {'allowed_in_states': ['open', 'requested', 'provided'], 'transitions_to': 'closed'}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['open', 'requested', 'provided'], 'transitions_to': None}, 'assign': {'allowed_in_states': ['open', 'requested', 'provided'], 'transitions_to': 'requested'}, 'confirm': {'allowed_in_states': ['open', 'requested', 'provided'], 'transitions_to': 'closed'}, 'close': {'allowed_in_states': ['open', 'requested', 'provided'], 'transitions_to': 'closed'}}
 
 STATE_FIELD = 'workflow_state'
 WORKFLOW_HINTS = {'relation_context': {'related_docs': ['audit_engagement'], 'borrowed_fields': ['engagement title', 'business area', 'requester from audit_engagement'], 'inferred_roles': ['auditor']}, 'actors': ['auditor'], 'action_actors': {'create': ['auditor'], 'assign': ['auditor'], 'confirm': ['auditor'], 'close': ['auditor']}}
@@ -29,7 +31,7 @@ class WorkflowService:
 
     def next_state_for(self, action_id: str) -> str | None:
         rule = ACTION_RULES.get(action_id, {})
-        return rule.get("transitions_to")
+        return cast(str | None, rule.get("transitions_to"))
 
     def apply_action(self, action_id: str, state: str | None) -> dict:
         if not self.is_action_allowed(action_id, state):

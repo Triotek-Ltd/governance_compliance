@@ -2,13 +2,15 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 
 DOC_ID = "legal_review_case"
 ARCHETYPE = "workflow_case"
 INITIAL_STATE = 'open'
 STATES = ['open', 'in_review', 'closed', 'archived']
 TERMINAL_STATES = ['closed', 'archived']
-ACTION_RULES = {'create': {'allowed_in_states': ['open', 'in_review'], 'transitions_to': None}, 'assign': {'allowed_in_states': ['open', 'in_review'], 'transitions_to': 'in_review'}, 'review': {'allowed_in_states': ['open', 'in_review'], 'transitions_to': 'in_review'}, 'close': {'allowed_in_states': ['open', 'in_review'], 'transitions_to': 'closed'}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['open', 'in_review'], 'transitions_to': None}, 'assign': {'allowed_in_states': ['open', 'in_review'], 'transitions_to': 'in_review'}, 'review': {'allowed_in_states': ['open', 'in_review'], 'transitions_to': 'in_review'}, 'close': {'allowed_in_states': ['open', 'in_review'], 'transitions_to': 'closed'}}
 
 STATE_FIELD = 'workflow_state'
 WORKFLOW_HINTS = {'relation_context': {'related_docs': ['legal_agreement'], 'borrowed_fields': ['agreement type', 'counterparty', 'routing status from legal_agreement'], 'inferred_roles': ['compliance officer', 'case owner']}, 'actors': ['compliance officer', 'case owner'], 'action_actors': {'create': ['compliance officer'], 'assign': ['compliance officer'], 'review': ['case owner'], 'close': ['case owner']}}
@@ -29,7 +31,7 @@ class WorkflowService:
 
     def next_state_for(self, action_id: str) -> str | None:
         rule = ACTION_RULES.get(action_id, {})
-        return rule.get("transitions_to")
+        return cast(str | None, rule.get("transitions_to"))
 
     def apply_action(self, action_id: str, state: str | None) -> dict:
         if not self.is_action_allowed(action_id, state):

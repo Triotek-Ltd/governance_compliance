@@ -2,13 +2,15 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 
 DOC_ID = "audit_finding"
 ARCHETYPE = "workflow_case"
 INITIAL_STATE = 'open'
 STATES = ['open', 'confirmed', 'resolved', 'closed', 'archived']
 TERMINAL_STATES = ['closed', 'archived']
-ACTION_RULES = {'create': {'allowed_in_states': ['open', 'confirmed', 'resolved'], 'transitions_to': None}, 'review': {'allowed_in_states': ['open', 'confirmed', 'resolved'], 'transitions_to': None}, 'confirm': {'allowed_in_states': ['open', 'confirmed', 'resolved'], 'transitions_to': 'confirmed'}, 'close': {'allowed_in_states': ['open', 'confirmed', 'resolved'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['open', 'confirmed', 'resolved'], 'transitions_to': 'archived'}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['open', 'confirmed', 'resolved'], 'transitions_to': None}, 'review': {'allowed_in_states': ['open', 'confirmed', 'resolved'], 'transitions_to': None}, 'confirm': {'allowed_in_states': ['open', 'confirmed', 'resolved'], 'transitions_to': 'confirmed'}, 'close': {'allowed_in_states': ['open', 'confirmed', 'resolved'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['open', 'confirmed', 'resolved'], 'transitions_to': 'archived'}}
 
 STATE_FIELD = 'workflow_state'
 WORKFLOW_HINTS = {'business_objective': 'prepare evidence and responses for audit activity, then track findings to remediation closure', 'actors': ['audit coordinator', 'requester', 'finding owner', 'reviewer'], 'start_condition': 'an internal or external audit cycle begins', 'ordered_steps': ['Record findings and remediate them through action items.'], 'primary_actions': ['create', 'assign', 'track', 'verify', 'close'], 'primary_transitions': ['audit_finding: opened -> in_review -> resolved -> closed'], 'downstream_effects': ['supports governance assurance and remediation tracking', 'consulting explanations', 'implementation planning', 'user guides', 'demo narratives'], 'action_actors': {'create': ['audit coordinator'], 'review': ['reviewer'], 'confirm': ['reviewer'], 'close': ['finding owner'], 'archive': ['finding owner']}}
@@ -29,7 +31,7 @@ class WorkflowService:
 
     def next_state_for(self, action_id: str) -> str | None:
         rule = ACTION_RULES.get(action_id, {})
-        return rule.get("transitions_to")
+        return cast(str | None, rule.get("transitions_to"))
 
     def apply_action(self, action_id: str, state: str | None) -> dict:
         if not self.is_action_allowed(action_id, state):

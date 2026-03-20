@@ -2,17 +2,19 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 
 DOC_ID = "corporate_access_request"
 ACTION_ID = "archive"
-ACTION_RULE = {'allowed_in_states': ['open', 'approved'], 'transitions_to': 'archived'}
+ACTION_RULE: dict[str, Any] = {'allowed_in_states': ['open', 'approved'], 'transitions_to': 'archived'}
 
 STATE_FIELD = 'workflow_state'
 WORKFLOW_HINTS = {'business_objective': 'preserve formal corporate records, track them in registers, and govern access and retention', 'actors': ['governance officer', 'custodian', 'approver'], 'start_condition': 'a corporate legal or governance document must be retained', 'ordered_steps': ['Control document access requests.'], 'primary_actions': ['create', 'submit', 'approve', 'close'], 'primary_transitions': ['corporate_access_request: draft -> in_review -> approved -> closed'], 'downstream_effects': ['supports legal, audit, and regulatory controls'], 'action_actors': {'create': ['governance officer'], 'approve': ['approver'], 'close': ['governance officer'], 'archive': ['governance officer']}}
 
 def handle_archive(payload: dict, context: dict | None = None) -> dict:
     context = context or {}
-    next_state = ACTION_RULE.get("transitions_to")
+    next_state = cast(str | None, ACTION_RULE.get("transitions_to"))
     updates = {STATE_FIELD: next_state} if STATE_FIELD and next_state else {}
     return {
         "doc_id": DOC_ID,

@@ -4,5 +4,682 @@
   "app_id": "governance_compliance",
   "type": "module",
   "status": "draft",
-  "supports_submodules": true
+  "supports_submodules": true,
+  "ui": {
+    "icon_key": "apps",
+    "accent": "#246f89",
+    "logo_image": null,
+    "cover_image": null
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "module",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "docs",
+      "flatten_submodules_in_ui": true
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "Audit Preparation KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "audit_preparation",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "Audit Preparation summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "audit_preparation",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "Audit Preparation charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "audit_preparation",
+          "metric_family": "trend"
+        },
+        "chart_specs": [
+          {
+            "id": "audit_preparation_trend_line",
+            "label": "Audit Preparation trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "audit_preparation_volume_column",
+            "label": "Audit Preparation volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "audit_preparation_distribution_donut",
+            "label": "Audit Preparation distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "audit_finding_trend_line",
+            "label": "Audit Finding trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "audit_finding_volume_column",
+            "label": "Audit Finding volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "audit_finding_distribution_donut",
+            "label": "Audit Finding distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "corrective_action_plan_trend_line",
+            "label": "Corrective Action Plan trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "corrective_action_plan_volume_column",
+            "label": "Corrective Action Plan volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "corrective_action_plan_distribution_donut",
+            "label": "Corrective Action Plan distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "audit_document_request_trend_line",
+            "label": "Audit Document Request trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "audit_document_request_volume_column",
+            "label": "Audit Document Request volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "audit_document_request_distribution_donut",
+            "label": "Audit Document Request distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "audit_engagement_trend_line",
+            "label": "Audit Engagement trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "audit_engagement_volume_column",
+            "label": "Audit Engagement volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "audit_engagement_distribution_donut",
+            "label": "Audit Engagement distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "audit_response_record_trend_line",
+            "label": "Audit Response Record trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "audit_response_record_volume_column",
+            "label": "Audit Response Record volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "audit_response_record_distribution_donut",
+            "label": "Audit Response Record distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          }
+        ]
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "Audit Preparation reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "audit_preparation",
+          "metric_family": "reporting"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "audit_preparation",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "audit_preparation",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "audit_preparation",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "audit_preparation",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "Audit Preparation Overview",
+        "report_type": "dashboard_summary",
+        "surface": "module"
+      },
+      {
+        "id": "trend_report",
+        "label": "Audit Preparation Trends",
+        "report_type": "trend_analysis",
+        "surface": "module"
+      },
+      {
+        "id": "summary_report",
+        "label": "Audit Finding Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Audit Finding Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "audit_preparation_trend_line",
+        "label": "Audit Preparation trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "audit_preparation_volume_column",
+        "label": "Audit Preparation volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "audit_preparation_distribution_donut",
+        "label": "Audit Preparation distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "audit_finding_trend_line",
+        "label": "Audit Finding trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "audit_finding_volume_column",
+        "label": "Audit Finding volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "audit_finding_distribution_donut",
+        "label": "Audit Finding distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "corrective_action_plan_trend_line",
+        "label": "Corrective Action Plan trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "corrective_action_plan_volume_column",
+        "label": "Corrective Action Plan volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "corrective_action_plan_distribution_donut",
+        "label": "Corrective Action Plan distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "audit_document_request_trend_line",
+        "label": "Audit Document Request trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "audit_document_request_volume_column",
+        "label": "Audit Document Request volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "audit_document_request_distribution_donut",
+        "label": "Audit Document Request distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "audit_engagement_trend_line",
+        "label": "Audit Engagement trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "audit_engagement_volume_column",
+        "label": "Audit Engagement volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "audit_engagement_distribution_donut",
+        "label": "Audit Engagement distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "audit_response_record_trend_line",
+        "label": "Audit Response Record trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "audit_response_record_volume_column",
+        "label": "Audit Response Record volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "audit_response_record_distribution_donut",
+        "label": "Audit Response Record distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ],
+    "source_docs": [],
+    "source_fields": [],
+    "child_sources": [
+      {
+        "id": "audit_finding",
+        "title": "Audit Finding",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "corrective_action_plan",
+        "title": "Corrective Action Plan",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "audit_document_request",
+        "title": "Audit Document Request",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "audit_engagement",
+        "title": "Audit Engagement",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "audit_response_record",
+        "title": "Audit Response Record",
+        "surface": null,
+        "source_docs": []
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "corrective_action_plan",
+      "audit_finding",
+      "audit_engagement",
+      "audit_document_request",
+      "audit_response_record"
+    ],
+    "upstream_docs": [
+      "corrective_action_plan",
+      "audit_finding",
+      "audit_engagement",
+      "audit_document_request",
+      "audit_response_record"
+    ],
+    "downstream_docs": [
+      "audit_finding"
+    ],
+    "actors": [
+      "audit coordinator",
+      "requester",
+      "finding owner",
+      "reviewer",
+      "auditor"
+    ],
+    "downstream_effects": [
+      "supports governance assurance and remediation tracking",
+      "consulting explanations",
+      "implementation planning",
+      "user guides",
+      "demo narratives"
+    ],
+    "emits_records": [
+      {
+        "action_id": "close",
+        "target_doc": "audit_finding",
+        "effect_type": "create_record"
+      }
+    ],
+    "handoff_targets": [
+      "corrective_action_plan",
+      "audit_finding",
+      "audit_engagement",
+      "audit_document_request",
+      "audit_response_record"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "audit_finding",
+        "target_doc": "corrective_action_plan",
+        "relation": "references"
+      },
+      {
+        "source_doc": "corrective_action_plan",
+        "target_doc": "audit_finding",
+        "relation": "references"
+      },
+      {
+        "source_doc": "corrective_action_plan",
+        "target_doc": "audit_finding",
+        "relation": "create_record",
+        "action_id": "close"
+      },
+      {
+        "source_doc": "audit_document_request",
+        "target_doc": "audit_engagement",
+        "relation": "references"
+      },
+      {
+        "source_doc": "audit_engagement",
+        "target_doc": "audit_document_request",
+        "relation": "references"
+      },
+      {
+        "source_doc": "audit_engagement",
+        "target_doc": "audit_finding",
+        "relation": "references"
+      },
+      {
+        "source_doc": "audit_engagement",
+        "target_doc": "audit_response_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "audit_engagement",
+        "target_doc": "corrective_action_plan",
+        "relation": "references"
+      },
+      {
+        "source_doc": "audit_engagement",
+        "target_doc": "audit_finding",
+        "relation": "create_record",
+        "action_id": "close"
+      },
+      {
+        "source_doc": "audit_response_record",
+        "target_doc": "audit_engagement",
+        "relation": "references"
+      }
+    ],
+    "operating_graph": {
+      "nodes": [
+        {
+          "id": "corrective_action_plan",
+          "kind": "doc"
+        },
+        {
+          "id": "audit_finding",
+          "kind": "doc"
+        },
+        {
+          "id": "audit_engagement",
+          "kind": "doc"
+        },
+        {
+          "id": "audit_document_request",
+          "kind": "doc"
+        },
+        {
+          "id": "audit_response_record",
+          "kind": "doc"
+        }
+      ],
+      "edges": [
+        {
+          "source_doc": "audit_finding",
+          "target_doc": "corrective_action_plan",
+          "relation": "references"
+        },
+        {
+          "source_doc": "corrective_action_plan",
+          "target_doc": "audit_finding",
+          "relation": "references"
+        },
+        {
+          "source_doc": "corrective_action_plan",
+          "target_doc": "audit_finding",
+          "relation": "create_record",
+          "action_id": "close"
+        },
+        {
+          "source_doc": "audit_document_request",
+          "target_doc": "audit_engagement",
+          "relation": "references"
+        },
+        {
+          "source_doc": "audit_engagement",
+          "target_doc": "audit_document_request",
+          "relation": "references"
+        },
+        {
+          "source_doc": "audit_engagement",
+          "target_doc": "audit_finding",
+          "relation": "references"
+        },
+        {
+          "source_doc": "audit_engagement",
+          "target_doc": "audit_response_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "audit_engagement",
+          "target_doc": "corrective_action_plan",
+          "relation": "references"
+        },
+        {
+          "source_doc": "audit_engagement",
+          "target_doc": "audit_finding",
+          "relation": "create_record",
+          "action_id": "close"
+        },
+        {
+          "source_doc": "audit_response_record",
+          "target_doc": "audit_engagement",
+          "relation": "references"
+        }
+      ]
+    }
+  },
+  "contract_version": 1
 }

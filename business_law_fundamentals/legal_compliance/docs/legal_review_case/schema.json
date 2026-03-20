@@ -145,7 +145,7 @@
     {
       "field_id": "agreement",
       "label": "Agreement",
-      "type": "Data",
+      "type": "Link",
       "required": false,
       "read_only": false,
       "default": null,
@@ -169,14 +169,14 @@
     {
       "field_id": "reviewer",
       "label": "Reviewer",
-      "type": "Data",
+      "type": "Link",
       "required": false,
       "read_only": false,
       "default": null,
       "unique": false,
       "options": null,
       "purpose": "actor_reference",
-      "linked_doc": null,
+      "linked_doc": "employee_record",
       "depends_on": null,
       "mandatory_depends_on": null,
       "read_only_depends_on": null,
@@ -394,7 +394,9 @@
         "assign",
         "review",
         "close"
-      ]
+      ],
+      "scope": "system",
+      "ownership": "platform"
     },
     {
       "role_id": "compliance officer",
@@ -402,8 +404,11 @@
         "view",
         "list",
         "create",
+        "update",
         "assign"
-      ]
+      ],
+      "scope": "review",
+      "ownership": "oversight"
     },
     {
       "role_id": "case owner",
@@ -411,8 +416,11 @@
         "view",
         "list",
         "review",
-        "close"
-      ]
+        "close",
+        "update"
+      ],
+      "scope": "document",
+      "ownership": "functional"
     }
   ],
   "transaction_behavior": {

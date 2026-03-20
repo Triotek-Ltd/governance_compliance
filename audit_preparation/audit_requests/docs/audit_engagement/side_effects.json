@@ -5,6 +5,27 @@
       "fields": {
         "workflow_state": "closed"
       }
+    },
+    {
+      "type": "create_record",
+      "target_doc": "audit_finding",
+      "values": {
+        "title": {
+          "$template": "Audit Finding for {title|reference_no|id}"
+        },
+        "reference_no": {
+          "$template": "AUDIT_FINDING-{reference_no|id}"
+        },
+        "source_reference": {
+          "$from": [
+            "reference_no",
+            "id"
+          ]
+        },
+        "source_doc_id": {
+          "$template": "{id}"
+        }
+      }
     }
   ],
   "archive": [

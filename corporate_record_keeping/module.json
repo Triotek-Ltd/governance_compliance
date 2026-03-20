@@ -4,5 +4,453 @@
   "app_id": "governance_compliance",
   "type": "module",
   "status": "draft",
-  "supports_submodules": true
+  "supports_submodules": true,
+  "ui": {
+    "icon_key": "apps",
+    "accent": "#246f89",
+    "logo_image": null,
+    "cover_image": null
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "module",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "docs",
+      "flatten_submodules_in_ui": true
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "Corporate Record Keeping KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "corporate_record_keeping",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "Corporate Record Keeping summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "corporate_record_keeping",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "Corporate Record Keeping charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "corporate_record_keeping",
+          "metric_family": "trend"
+        },
+        "chart_specs": [
+          {
+            "id": "corporate_record_keeping_trend_line",
+            "label": "Corporate Record Keeping trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "corporate_record_keeping_volume_column",
+            "label": "Corporate Record Keeping volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "corporate_record_keeping_distribution_donut",
+            "label": "Corporate Record Keeping distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "corporate_access_request_trend_line",
+            "label": "Corporate Access Request trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "corporate_access_request_volume_column",
+            "label": "Corporate Access Request volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "corporate_access_request_distribution_donut",
+            "label": "Corporate Access Request distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "corporate_document_trend_line",
+            "label": "Corporate Document trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "corporate_document_volume_column",
+            "label": "Corporate Document volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "corporate_document_distribution_donut",
+            "label": "Corporate Document distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "corporate_register_entry_trend_line",
+            "label": "Corporate Register Entry trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "corporate_register_entry_volume_column",
+            "label": "Corporate Register Entry volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "corporate_register_entry_distribution_donut",
+            "label": "Corporate Register Entry distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          }
+        ]
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "Corporate Record Keeping reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "corporate_record_keeping",
+          "metric_family": "reporting"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "corporate_record_keeping",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "corporate_record_keeping",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "corporate_record_keeping",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "corporate_record_keeping",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "Corporate Record Keeping Overview",
+        "report_type": "dashboard_summary",
+        "surface": "module"
+      },
+      {
+        "id": "trend_report",
+        "label": "Corporate Record Keeping Trends",
+        "report_type": "trend_analysis",
+        "surface": "module"
+      },
+      {
+        "id": "summary_report",
+        "label": "Corporate Access Request Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Corporate Access Request Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "corporate_record_keeping_trend_line",
+        "label": "Corporate Record Keeping trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "corporate_record_keeping_volume_column",
+        "label": "Corporate Record Keeping volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "corporate_record_keeping_distribution_donut",
+        "label": "Corporate Record Keeping distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "corporate_access_request_trend_line",
+        "label": "Corporate Access Request trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "corporate_access_request_volume_column",
+        "label": "Corporate Access Request volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "corporate_access_request_distribution_donut",
+        "label": "Corporate Access Request distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "corporate_document_trend_line",
+        "label": "Corporate Document trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "corporate_document_volume_column",
+        "label": "Corporate Document volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "corporate_document_distribution_donut",
+        "label": "Corporate Document distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "corporate_register_entry_trend_line",
+        "label": "Corporate Register Entry trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "corporate_register_entry_volume_column",
+        "label": "Corporate Register Entry volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "corporate_register_entry_distribution_donut",
+        "label": "Corporate Register Entry distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ],
+    "source_docs": [],
+    "source_fields": [],
+    "child_sources": [
+      {
+        "id": "corporate_access_request",
+        "title": "Corporate Access Request",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "corporate_document",
+        "title": "Corporate Document",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "corporate_register_entry",
+        "title": "Corporate Register Entry",
+        "surface": null,
+        "source_docs": []
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "corporate_document",
+      "corporate_register_entry"
+    ],
+    "upstream_docs": [
+      "corporate_document",
+      "corporate_register_entry"
+    ],
+    "downstream_docs": [],
+    "actors": [
+      "governance officer",
+      "custodian",
+      "approver"
+    ],
+    "downstream_effects": [
+      "supports legal, audit, and regulatory controls"
+    ],
+    "emits_records": [],
+    "handoff_targets": [
+      "corporate_document",
+      "corporate_register_entry"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "corporate_access_request",
+        "target_doc": "corporate_document",
+        "relation": "references"
+      },
+      {
+        "source_doc": "corporate_document",
+        "target_doc": "corporate_register_entry",
+        "relation": "references"
+      },
+      {
+        "source_doc": "corporate_register_entry",
+        "target_doc": "corporate_document",
+        "relation": "references"
+      }
+    ],
+    "operating_graph": {
+      "nodes": [
+        {
+          "id": "corporate_document",
+          "kind": "doc"
+        },
+        {
+          "id": "corporate_register_entry",
+          "kind": "doc"
+        }
+      ],
+      "edges": [
+        {
+          "source_doc": "corporate_access_request",
+          "target_doc": "corporate_document",
+          "relation": "references"
+        },
+        {
+          "source_doc": "corporate_document",
+          "target_doc": "corporate_register_entry",
+          "relation": "references"
+        },
+        {
+          "source_doc": "corporate_register_entry",
+          "target_doc": "corporate_document",
+          "relation": "references"
+        }
+      ]
+    }
+  },
+  "contract_version": 1
 }

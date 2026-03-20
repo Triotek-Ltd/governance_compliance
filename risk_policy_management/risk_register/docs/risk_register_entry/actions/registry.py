@@ -2,10 +2,12 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 
 DOC_ID = "risk_register_entry"
 ALLOWED_ACTIONS = ['create', 'review', 'approve', 'close', 'archive', 'score', 'mitigate', 'escalate', 'reopen']
-ACTION_RULES = {'create': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'review': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'approve': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'close': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': 'archived'}, 'score': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'mitigate': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'escalate': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'reopen': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'review': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'approve': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'close': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': 'archived'}, 'score': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'mitigate': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'escalate': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}, 'reopen': {'allowed_in_states': ['open', 'mitigated'], 'transitions_to': None}}
 
 STATE_FIELD = 'workflow_state'
 

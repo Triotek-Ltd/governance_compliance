@@ -4,5 +4,509 @@
   "app_id": "governance_compliance",
   "type": "module",
   "status": "draft",
-  "supports_submodules": true
+  "supports_submodules": true,
+  "ui": {
+    "icon_key": "apps",
+    "accent": "#246f89",
+    "logo_image": null,
+    "cover_image": null
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "module",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "docs",
+      "flatten_submodules_in_ui": true
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "Business Law Fundamentals KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "business_law_fundamentals",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "Business Law Fundamentals summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "business_law_fundamentals",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "Business Law Fundamentals charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "business_law_fundamentals",
+          "metric_family": "trend"
+        },
+        "chart_specs": [
+          {
+            "id": "business_law_fundamentals_trend_line",
+            "label": "Business Law Fundamentals trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "business_law_fundamentals_volume_column",
+            "label": "Business Law Fundamentals volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "business_law_fundamentals_distribution_donut",
+            "label": "Business Law Fundamentals distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "contract_obligation_trend_line",
+            "label": "Contract Obligation trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "contract_obligation_volume_column",
+            "label": "Contract Obligation volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "contract_obligation_distribution_donut",
+            "label": "Contract Obligation distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "legal_agreement_trend_line",
+            "label": "Legal Agreement trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "legal_agreement_volume_column",
+            "label": "Legal Agreement volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "legal_agreement_distribution_donut",
+            "label": "Legal Agreement distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "legal_review_case_trend_line",
+            "label": "Legal Review Case trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "legal_review_case_volume_column",
+            "label": "Legal Review Case volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "legal_review_case_distribution_donut",
+            "label": "Legal Review Case distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          }
+        ]
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "Business Law Fundamentals reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "module",
+          "entity_id": "business_law_fundamentals",
+          "metric_family": "reporting"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "business_law_fundamentals",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "business_law_fundamentals",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "business_law_fundamentals",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "module",
+        "entity_id": "business_law_fundamentals",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "Business Law Fundamentals Overview",
+        "report_type": "dashboard_summary",
+        "surface": "module"
+      },
+      {
+        "id": "trend_report",
+        "label": "Business Law Fundamentals Trends",
+        "report_type": "trend_analysis",
+        "surface": "module"
+      },
+      {
+        "id": "summary_report",
+        "label": "Contract Obligation Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Contract Obligation Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "business_law_fundamentals_trend_line",
+        "label": "Business Law Fundamentals trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "business_law_fundamentals_volume_column",
+        "label": "Business Law Fundamentals volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "business_law_fundamentals_distribution_donut",
+        "label": "Business Law Fundamentals distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "contract_obligation_trend_line",
+        "label": "Contract Obligation trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "contract_obligation_volume_column",
+        "label": "Contract Obligation volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "contract_obligation_distribution_donut",
+        "label": "Contract Obligation distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "legal_agreement_trend_line",
+        "label": "Legal Agreement trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "legal_agreement_volume_column",
+        "label": "Legal Agreement volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "legal_agreement_distribution_donut",
+        "label": "Legal Agreement distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "legal_review_case_trend_line",
+        "label": "Legal Review Case trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "legal_review_case_volume_column",
+        "label": "Legal Review Case volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "legal_review_case_distribution_donut",
+        "label": "Legal Review Case distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ],
+    "source_docs": [],
+    "source_fields": [],
+    "child_sources": [
+      {
+        "id": "contract_obligation",
+        "title": "Contract Obligation",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "legal_agreement",
+        "title": "Legal Agreement",
+        "surface": null,
+        "source_docs": []
+      },
+      {
+        "id": "legal_review_case",
+        "title": "Legal Review Case",
+        "surface": null,
+        "source_docs": []
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "legal_agreement",
+      "legal_review_case",
+      "contract_obligation"
+    ],
+    "upstream_docs": [
+      "legal_agreement",
+      "legal_review_case",
+      "contract_obligation"
+    ],
+    "downstream_docs": [
+      "legal_review_case"
+    ],
+    "actors": [
+      "compliance officer",
+      "legal reviewer",
+      "business owner",
+      "approver",
+      "case owner"
+    ],
+    "downstream_effects": [
+      "supports legal compliance and obligation management"
+    ],
+    "emits_records": [
+      {
+        "action_id": "approve",
+        "target_doc": "legal_review_case",
+        "effect_type": "create_record"
+      },
+      {
+        "action_id": "issue",
+        "target_doc": "legal_review_case",
+        "effect_type": "create_record"
+      }
+    ],
+    "handoff_targets": [
+      "legal_agreement",
+      "legal_review_case",
+      "contract_obligation"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "contract_obligation",
+        "target_doc": "legal_agreement",
+        "relation": "references"
+      },
+      {
+        "source_doc": "legal_agreement",
+        "target_doc": "legal_review_case",
+        "relation": "references"
+      },
+      {
+        "source_doc": "legal_agreement",
+        "target_doc": "contract_obligation",
+        "relation": "references"
+      },
+      {
+        "source_doc": "legal_agreement",
+        "target_doc": "legal_review_case",
+        "relation": "create_record",
+        "action_id": "approve"
+      },
+      {
+        "source_doc": "legal_agreement",
+        "target_doc": "legal_review_case",
+        "relation": "create_record",
+        "action_id": "issue"
+      },
+      {
+        "source_doc": "legal_review_case",
+        "target_doc": "legal_agreement",
+        "relation": "references"
+      }
+    ],
+    "operating_graph": {
+      "nodes": [
+        {
+          "id": "legal_agreement",
+          "kind": "doc"
+        },
+        {
+          "id": "legal_review_case",
+          "kind": "doc"
+        },
+        {
+          "id": "contract_obligation",
+          "kind": "doc"
+        }
+      ],
+      "edges": [
+        {
+          "source_doc": "contract_obligation",
+          "target_doc": "legal_agreement",
+          "relation": "references"
+        },
+        {
+          "source_doc": "legal_agreement",
+          "target_doc": "legal_review_case",
+          "relation": "references"
+        },
+        {
+          "source_doc": "legal_agreement",
+          "target_doc": "contract_obligation",
+          "relation": "references"
+        },
+        {
+          "source_doc": "legal_agreement",
+          "target_doc": "legal_review_case",
+          "relation": "create_record",
+          "action_id": "approve"
+        },
+        {
+          "source_doc": "legal_agreement",
+          "target_doc": "legal_review_case",
+          "relation": "create_record",
+          "action_id": "issue"
+        },
+        {
+          "source_doc": "legal_review_case",
+          "target_doc": "legal_agreement",
+          "relation": "references"
+        }
+      ]
+    }
+  },
+  "contract_version": 1
 }

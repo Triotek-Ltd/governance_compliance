@@ -2,17 +2,19 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 
 DOC_ID = "audit_engagement"
 ACTION_ID = "refer"
-ACTION_RULE = {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}
+ACTION_RULE: dict[str, Any] = {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}
 
 STATE_FIELD = 'workflow_state'
 WORKFLOW_HINTS = {'business_objective': 'prepare evidence and responses for audit activity, then track findings to remediation closure', 'actors': ['audit coordinator', 'requester', 'finding owner', 'reviewer'], 'start_condition': 'an internal or external audit cycle begins', 'ordered_steps': ['Open the audit engagement and confirm scope.'], 'primary_actions': ['create', 'review', 'approve'], 'primary_transitions': ['audit_engagement: draft -> approved -> active'], 'downstream_effects': ['supports governance assurance and remediation tracking', 'consulting explanations', 'implementation planning', 'user guides', 'demo narratives'], 'action_actors': {'create': ['audit coordinator'], 'assign': ['audit coordinator'], 'review': ['reviewer'], 'close': ['finding owner'], 'archive': ['finding owner']}}
 
 def handle_refer(payload: dict, context: dict | None = None) -> dict:
     context = context or {}
-    next_state = ACTION_RULE.get("transitions_to")
+    next_state = cast(str | None, ACTION_RULE.get("transitions_to"))
     updates = {STATE_FIELD: next_state} if STATE_FIELD and next_state else {}
     return {
         "doc_id": DOC_ID,

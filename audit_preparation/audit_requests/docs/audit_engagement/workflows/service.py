@@ -2,13 +2,15 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 
 DOC_ID = "audit_engagement"
 ARCHETYPE = "workflow_case"
 INITIAL_STATE = 'open'
 STATES = ['open', 'in_progress', 'closed', 'archived']
 TERMINAL_STATES = ['closed', 'archived']
-ACTION_RULES = {'create': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}, 'assign': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': 'in_progress'}, 'review': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}, 'close': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': 'archived'}, 'accept': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}, 'refer': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}, 'request_clarification': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}, 'escalate': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}, 'assign': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': 'in_progress'}, 'review': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}, 'close': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': 'closed'}, 'archive': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': 'archived'}, 'accept': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}, 'refer': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}, 'request_clarification': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}, 'escalate': {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}}
 
 STATE_FIELD = 'workflow_state'
 WORKFLOW_HINTS = {'business_objective': 'prepare evidence and responses for audit activity, then track findings to remediation closure', 'actors': ['audit coordinator', 'requester', 'finding owner', 'reviewer'], 'start_condition': 'an internal or external audit cycle begins', 'ordered_steps': ['Open the audit engagement and confirm scope.'], 'primary_actions': ['create', 'review', 'approve'], 'primary_transitions': ['audit_engagement: draft -> approved -> active'], 'downstream_effects': ['supports governance assurance and remediation tracking', 'consulting explanations', 'implementation planning', 'user guides', 'demo narratives'], 'action_actors': {'create': ['audit coordinator'], 'assign': ['audit coordinator'], 'review': ['reviewer'], 'close': ['finding owner'], 'archive': ['finding owner']}}
@@ -29,7 +31,7 @@ class WorkflowService:
 
     def next_state_for(self, action_id: str) -> str | None:
         rule = ACTION_RULES.get(action_id, {})
-        return rule.get("transitions_to")
+        return cast(str | None, rule.get("transitions_to"))
 
     def apply_action(self, action_id: str, state: str | None) -> dict:
         if not self.is_action_allowed(action_id, state):

@@ -8,5 +8,2036 @@
     "id": "CUSTOM-PROPRIETARY",
     "type": "proprietary_custom",
     "terms_ref": "LICENSE"
+  },
+  "ui": {
+    "icon_key": "apps",
+    "accent": "#246f89",
+    "logo_image": null,
+    "cover_image": null
+  },
+  "dashboard": {
+    "version": 1,
+    "surface": "app",
+    "hero": {
+      "variant": "summary_strip",
+      "show_breadcrumb": true,
+      "show_title": true
+    },
+    "navigation": {
+      "primary_children": "modules",
+      "flatten_submodules_in_ui": false
+    },
+    "blocks": [
+      {
+        "id": "kpis",
+        "type": "kpi_cards",
+        "title": "My Plug App KPIs",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "app",
+          "entity_id": "governance_compliance",
+          "metric_family": "overview"
+        }
+      },
+      {
+        "id": "summaries",
+        "type": "summary_cards",
+        "title": "My Plug App summaries",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "app",
+          "entity_id": "governance_compliance",
+          "metric_family": "summary"
+        }
+      },
+      {
+        "id": "charts",
+        "type": "chart_group",
+        "title": "My Plug App charts",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "app",
+          "entity_id": "governance_compliance",
+          "metric_family": "trend"
+        },
+        "chart_specs": [
+          {
+            "id": "governance_compliance_trend_line",
+            "label": "My Plug App trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "governance_compliance_volume_column",
+            "label": "My Plug App volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "governance_compliance_distribution_donut",
+            "label": "My Plug App distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "audit_preparation_trend_line",
+            "label": "Audit Preparation trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "audit_preparation_volume_column",
+            "label": "Audit Preparation volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "audit_preparation_distribution_donut",
+            "label": "Audit Preparation distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "audit_finding_trend_line",
+            "label": "Audit Finding trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "audit_finding_volume_column",
+            "label": "Audit Finding volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "audit_finding_distribution_donut",
+            "label": "Audit Finding distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "corrective_action_plan_trend_line",
+            "label": "Corrective Action Plan trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "corrective_action_plan_volume_column",
+            "label": "Corrective Action Plan volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "corrective_action_plan_distribution_donut",
+            "label": "Corrective Action Plan distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "audit_document_request_trend_line",
+            "label": "Audit Document Request trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "audit_document_request_volume_column",
+            "label": "Audit Document Request volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "audit_document_request_distribution_donut",
+            "label": "Audit Document Request distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "audit_engagement_trend_line",
+            "label": "Audit Engagement trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "audit_engagement_volume_column",
+            "label": "Audit Engagement volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "audit_engagement_distribution_donut",
+            "label": "Audit Engagement distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "audit_response_record_trend_line",
+            "label": "Audit Response Record trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "audit_response_record_volume_column",
+            "label": "Audit Response Record volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "audit_response_record_distribution_donut",
+            "label": "Audit Response Record distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "business_law_fundamentals_trend_line",
+            "label": "Business Law Fundamentals trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "business_law_fundamentals_volume_column",
+            "label": "Business Law Fundamentals volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "business_law_fundamentals_distribution_donut",
+            "label": "Business Law Fundamentals distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "contract_obligation_trend_line",
+            "label": "Contract Obligation trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "contract_obligation_volume_column",
+            "label": "Contract Obligation volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "contract_obligation_distribution_donut",
+            "label": "Contract Obligation distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "legal_agreement_trend_line",
+            "label": "Legal Agreement trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "legal_agreement_volume_column",
+            "label": "Legal Agreement volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "legal_agreement_distribution_donut",
+            "label": "Legal Agreement distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "legal_review_case_trend_line",
+            "label": "Legal Review Case trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "legal_review_case_volume_column",
+            "label": "Legal Review Case volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "legal_review_case_distribution_donut",
+            "label": "Legal Review Case distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "corporate_record_keeping_trend_line",
+            "label": "Corporate Record Keeping trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "corporate_record_keeping_volume_column",
+            "label": "Corporate Record Keeping volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "corporate_record_keeping_distribution_donut",
+            "label": "Corporate Record Keeping distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "corporate_access_request_trend_line",
+            "label": "Corporate Access Request trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "corporate_access_request_volume_column",
+            "label": "Corporate Access Request volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "corporate_access_request_distribution_donut",
+            "label": "Corporate Access Request distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "corporate_document_trend_line",
+            "label": "Corporate Document trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "corporate_document_volume_column",
+            "label": "Corporate Document volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "corporate_document_distribution_donut",
+            "label": "Corporate Document distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "corporate_register_entry_trend_line",
+            "label": "Corporate Register Entry trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "corporate_register_entry_volume_column",
+            "label": "Corporate Register Entry volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "corporate_register_entry_distribution_donut",
+            "label": "Corporate Register Entry distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "regulatory_compliance_trend_line",
+            "label": "Regulatory Compliance trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "regulatory_compliance_volume_column",
+            "label": "Regulatory Compliance volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "regulatory_compliance_distribution_donut",
+            "label": "Regulatory Compliance distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "regulatory_filing_trend_line",
+            "label": "Regulatory Filing trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "regulatory_filing_volume_column",
+            "label": "Regulatory Filing volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "regulatory_filing_distribution_donut",
+            "label": "Regulatory Filing distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "submission_confirmation_trend_line",
+            "label": "Submission Confirmation trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "submission_confirmation_volume_column",
+            "label": "Submission Confirmation volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "submission_confirmation_distribution_donut",
+            "label": "Submission Confirmation distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "compliance_record_trend_line",
+            "label": "Compliance Record trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "compliance_record_volume_column",
+            "label": "Compliance Record volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "compliance_record_distribution_donut",
+            "label": "Compliance Record distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "regulatory_obligation_trend_line",
+            "label": "Regulatory Obligation trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "regulatory_obligation_volume_column",
+            "label": "Regulatory Obligation volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "regulatory_obligation_distribution_donut",
+            "label": "Regulatory Obligation distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "risk_policy_management_trend_line",
+            "label": "Risk Policy Management trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "risk_policy_management_volume_column",
+            "label": "Risk Policy Management volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "risk_policy_management_distribution_donut",
+            "label": "Risk Policy Management distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "policy_document_trend_line",
+            "label": "Policy Document trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "policy_document_volume_column",
+            "label": "Policy Document volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "policy_document_distribution_donut",
+            "label": "Policy Document distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "mitigation_plan_trend_line",
+            "label": "Mitigation Plan trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "mitigation_plan_volume_column",
+            "label": "Mitigation Plan volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "mitigation_plan_distribution_donut",
+            "label": "Mitigation Plan distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          },
+          {
+            "id": "risk_register_entry_trend_line",
+            "label": "Risk Register Entry trend",
+            "chart_type": "line",
+            "series_role": "time_series",
+            "metric_family": "trend",
+            "x_field": "period",
+            "y_field": "value"
+          },
+          {
+            "id": "risk_register_entry_volume_column",
+            "label": "Risk Register Entry volume",
+            "chart_type": "column",
+            "series_role": "comparison",
+            "metric_family": "summary",
+            "x_field": "category",
+            "y_field": "count"
+          },
+          {
+            "id": "risk_register_entry_distribution_donut",
+            "label": "Risk Register Entry distribution",
+            "chart_type": "donut",
+            "series_role": "distribution",
+            "metric_family": "summary",
+            "segment_field": "category",
+            "value_field": "value"
+          }
+        ]
+      },
+      {
+        "id": "reports",
+        "type": "report_links",
+        "title": "My Plug App reports",
+        "data_source": {
+          "kind": "db",
+          "entity_scope": "app",
+          "entity_id": "governance_compliance",
+          "metric_family": "reporting"
+        }
+      }
+    ]
+  },
+  "reporting": {
+    "supports_kpis": true,
+    "supports_summaries": true,
+    "supports_charts": true,
+    "supports_reports": true,
+    "default_time_grain": "month",
+    "default_comparison": "previous_period",
+    "default_currency_mode": "base_currency",
+    "metric_sources": [
+      {
+        "id": "overview",
+        "kind": "db",
+        "entity_scope": "app",
+        "entity_id": "governance_compliance",
+        "metric_family": "overview"
+      },
+      {
+        "id": "summary",
+        "kind": "db",
+        "entity_scope": "app",
+        "entity_id": "governance_compliance",
+        "metric_family": "summary"
+      },
+      {
+        "id": "trend",
+        "kind": "db",
+        "entity_scope": "app",
+        "entity_id": "governance_compliance",
+        "metric_family": "trend"
+      },
+      {
+        "id": "reporting",
+        "kind": "db",
+        "entity_scope": "app",
+        "entity_id": "governance_compliance",
+        "metric_family": "reporting"
+      }
+    ],
+    "report_registry": [
+      {
+        "id": "overview_report",
+        "label": "My Plug App Overview",
+        "report_type": "dashboard_summary",
+        "surface": "app"
+      },
+      {
+        "id": "trend_report",
+        "label": "My Plug App Trends",
+        "report_type": "trend_analysis",
+        "surface": "app"
+      },
+      {
+        "id": "summary_report",
+        "label": "Audit Finding Summary",
+        "report_type": "summary_report",
+        "surface": "doc"
+      },
+      {
+        "id": "detail_report",
+        "label": "Audit Finding Detail",
+        "report_type": "detail_report",
+        "surface": "doc"
+      }
+    ],
+    "chart_library": {
+      "renderer": "recharts",
+      "recommended_package": "recharts",
+      "source": "https://recharts.org/en-US"
+    },
+    "chart_registry": [
+      {
+        "id": "governance_compliance_trend_line",
+        "label": "My Plug App trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "governance_compliance_volume_column",
+        "label": "My Plug App volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "governance_compliance_distribution_donut",
+        "label": "My Plug App distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "audit_preparation_trend_line",
+        "label": "Audit Preparation trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "audit_preparation_volume_column",
+        "label": "Audit Preparation volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "audit_preparation_distribution_donut",
+        "label": "Audit Preparation distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "audit_finding_trend_line",
+        "label": "Audit Finding trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "audit_finding_volume_column",
+        "label": "Audit Finding volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "audit_finding_distribution_donut",
+        "label": "Audit Finding distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "corrective_action_plan_trend_line",
+        "label": "Corrective Action Plan trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "corrective_action_plan_volume_column",
+        "label": "Corrective Action Plan volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "corrective_action_plan_distribution_donut",
+        "label": "Corrective Action Plan distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "audit_document_request_trend_line",
+        "label": "Audit Document Request trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "audit_document_request_volume_column",
+        "label": "Audit Document Request volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "audit_document_request_distribution_donut",
+        "label": "Audit Document Request distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "audit_engagement_trend_line",
+        "label": "Audit Engagement trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "audit_engagement_volume_column",
+        "label": "Audit Engagement volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "audit_engagement_distribution_donut",
+        "label": "Audit Engagement distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "audit_response_record_trend_line",
+        "label": "Audit Response Record trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "audit_response_record_volume_column",
+        "label": "Audit Response Record volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "audit_response_record_distribution_donut",
+        "label": "Audit Response Record distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "business_law_fundamentals_trend_line",
+        "label": "Business Law Fundamentals trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "business_law_fundamentals_volume_column",
+        "label": "Business Law Fundamentals volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "business_law_fundamentals_distribution_donut",
+        "label": "Business Law Fundamentals distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "contract_obligation_trend_line",
+        "label": "Contract Obligation trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "contract_obligation_volume_column",
+        "label": "Contract Obligation volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "contract_obligation_distribution_donut",
+        "label": "Contract Obligation distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "legal_agreement_trend_line",
+        "label": "Legal Agreement trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "legal_agreement_volume_column",
+        "label": "Legal Agreement volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "legal_agreement_distribution_donut",
+        "label": "Legal Agreement distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "legal_review_case_trend_line",
+        "label": "Legal Review Case trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "legal_review_case_volume_column",
+        "label": "Legal Review Case volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "legal_review_case_distribution_donut",
+        "label": "Legal Review Case distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "corporate_record_keeping_trend_line",
+        "label": "Corporate Record Keeping trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "corporate_record_keeping_volume_column",
+        "label": "Corporate Record Keeping volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "corporate_record_keeping_distribution_donut",
+        "label": "Corporate Record Keeping distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "corporate_access_request_trend_line",
+        "label": "Corporate Access Request trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "corporate_access_request_volume_column",
+        "label": "Corporate Access Request volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "corporate_access_request_distribution_donut",
+        "label": "Corporate Access Request distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "corporate_document_trend_line",
+        "label": "Corporate Document trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "corporate_document_volume_column",
+        "label": "Corporate Document volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "corporate_document_distribution_donut",
+        "label": "Corporate Document distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "corporate_register_entry_trend_line",
+        "label": "Corporate Register Entry trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "corporate_register_entry_volume_column",
+        "label": "Corporate Register Entry volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "corporate_register_entry_distribution_donut",
+        "label": "Corporate Register Entry distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "regulatory_compliance_trend_line",
+        "label": "Regulatory Compliance trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "regulatory_compliance_volume_column",
+        "label": "Regulatory Compliance volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "regulatory_compliance_distribution_donut",
+        "label": "Regulatory Compliance distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "regulatory_filing_trend_line",
+        "label": "Regulatory Filing trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "regulatory_filing_volume_column",
+        "label": "Regulatory Filing volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "regulatory_filing_distribution_donut",
+        "label": "Regulatory Filing distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "submission_confirmation_trend_line",
+        "label": "Submission Confirmation trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "submission_confirmation_volume_column",
+        "label": "Submission Confirmation volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "submission_confirmation_distribution_donut",
+        "label": "Submission Confirmation distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "compliance_record_trend_line",
+        "label": "Compliance Record trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "compliance_record_volume_column",
+        "label": "Compliance Record volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "compliance_record_distribution_donut",
+        "label": "Compliance Record distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "regulatory_obligation_trend_line",
+        "label": "Regulatory Obligation trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "regulatory_obligation_volume_column",
+        "label": "Regulatory Obligation volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "regulatory_obligation_distribution_donut",
+        "label": "Regulatory Obligation distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "risk_policy_management_trend_line",
+        "label": "Risk Policy Management trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "risk_policy_management_volume_column",
+        "label": "Risk Policy Management volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "risk_policy_management_distribution_donut",
+        "label": "Risk Policy Management distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "policy_document_trend_line",
+        "label": "Policy Document trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "policy_document_volume_column",
+        "label": "Policy Document volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "policy_document_distribution_donut",
+        "label": "Policy Document distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "mitigation_plan_trend_line",
+        "label": "Mitigation Plan trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "mitigation_plan_volume_column",
+        "label": "Mitigation Plan volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "mitigation_plan_distribution_donut",
+        "label": "Mitigation Plan distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      },
+      {
+        "id": "risk_register_entry_trend_line",
+        "label": "Risk Register Entry trend",
+        "chart_type": "line",
+        "series_role": "time_series",
+        "metric_family": "trend",
+        "x_field": "period",
+        "y_field": "value"
+      },
+      {
+        "id": "risk_register_entry_volume_column",
+        "label": "Risk Register Entry volume",
+        "chart_type": "column",
+        "series_role": "comparison",
+        "metric_family": "summary",
+        "x_field": "category",
+        "y_field": "count"
+      },
+      {
+        "id": "risk_register_entry_distribution_donut",
+        "label": "Risk Register Entry distribution",
+        "chart_type": "donut",
+        "series_role": "distribution",
+        "metric_family": "summary",
+        "segment_field": "category",
+        "value_field": "value"
+      }
+    ],
+    "source_docs": [],
+    "source_fields": [],
+    "child_sources": [
+      {
+        "id": "audit_preparation",
+        "title": "Audit Preparation",
+        "surface": "module",
+        "source_docs": []
+      },
+      {
+        "id": "business_law_fundamentals",
+        "title": "Business Law Fundamentals",
+        "surface": "module",
+        "source_docs": []
+      },
+      {
+        "id": "corporate_record_keeping",
+        "title": "Corporate Record Keeping",
+        "surface": "module",
+        "source_docs": []
+      },
+      {
+        "id": "regulatory_compliance",
+        "title": "Regulatory Compliance",
+        "surface": "module",
+        "source_docs": []
+      },
+      {
+        "id": "risk_policy_management",
+        "title": "Risk Policy Management",
+        "surface": "module",
+        "source_docs": []
+      }
+    ]
+  },
+  "flow": {
+    "related_docs": [
+      "corrective_action_plan",
+      "audit_finding",
+      "audit_engagement",
+      "audit_document_request",
+      "audit_response_record",
+      "legal_agreement",
+      "legal_review_case",
+      "contract_obligation",
+      "corporate_document",
+      "corporate_register_entry",
+      "regulatory_obligation",
+      "submission_confirmation",
+      "compliance_record",
+      "regulatory_filing",
+      "risk_register_entry",
+      "mitigation_plan",
+      "policy_document"
+    ],
+    "upstream_docs": [
+      "corrective_action_plan",
+      "audit_finding",
+      "audit_engagement",
+      "audit_document_request",
+      "audit_response_record",
+      "legal_agreement",
+      "legal_review_case",
+      "contract_obligation",
+      "corporate_document",
+      "corporate_register_entry",
+      "regulatory_obligation",
+      "submission_confirmation",
+      "compliance_record",
+      "regulatory_filing",
+      "risk_register_entry",
+      "mitigation_plan",
+      "policy_document"
+    ],
+    "downstream_docs": [
+      "audit_finding",
+      "legal_review_case",
+      "submission_confirmation",
+      "risk_register_entry",
+      "mitigation_plan"
+    ],
+    "actors": [
+      "audit coordinator",
+      "requester",
+      "finding owner",
+      "reviewer",
+      "auditor",
+      "compliance officer",
+      "legal reviewer",
+      "business owner",
+      "approver",
+      "case owner",
+      "governance officer",
+      "custodian",
+      "preparer",
+      "regulator-facing submitter",
+      "risk owner",
+      "policy owner"
+    ],
+    "downstream_effects": [
+      "supports governance assurance and remediation tracking",
+      "consulting explanations",
+      "implementation planning",
+      "user guides",
+      "demo narratives",
+      "supports legal compliance and obligation management",
+      "supports legal, audit, and regulatory controls",
+      "compliance history becomes available to audit, legal, risk, and reporting flows",
+      "supports compliance, audit, and business-law controls"
+    ],
+    "emits_records": [
+      {
+        "action_id": "close",
+        "target_doc": "audit_finding",
+        "effect_type": "create_record"
+      },
+      {
+        "action_id": "approve",
+        "target_doc": "legal_review_case",
+        "effect_type": "create_record"
+      },
+      {
+        "action_id": "issue",
+        "target_doc": "legal_review_case",
+        "effect_type": "create_record"
+      },
+      {
+        "action_id": "confirm",
+        "target_doc": "submission_confirmation",
+        "effect_type": "create_record"
+      },
+      {
+        "action_id": "approve",
+        "target_doc": "risk_register_entry",
+        "effect_type": "create_record"
+      },
+      {
+        "action_id": "approve",
+        "target_doc": "mitigation_plan",
+        "effect_type": "create_record"
+      }
+    ],
+    "handoff_targets": [
+      "corrective_action_plan",
+      "audit_finding",
+      "audit_engagement",
+      "audit_document_request",
+      "audit_response_record",
+      "legal_agreement",
+      "legal_review_case",
+      "contract_obligation",
+      "corporate_document",
+      "corporate_register_entry",
+      "regulatory_obligation",
+      "submission_confirmation",
+      "compliance_record",
+      "regulatory_filing",
+      "risk_register_entry",
+      "mitigation_plan",
+      "policy_document"
+    ],
+    "graph_edges": [
+      {
+        "source_doc": "audit_finding",
+        "target_doc": "corrective_action_plan",
+        "relation": "references"
+      },
+      {
+        "source_doc": "corrective_action_plan",
+        "target_doc": "audit_finding",
+        "relation": "references"
+      },
+      {
+        "source_doc": "corrective_action_plan",
+        "target_doc": "audit_finding",
+        "relation": "create_record",
+        "action_id": "close"
+      },
+      {
+        "source_doc": "audit_document_request",
+        "target_doc": "audit_engagement",
+        "relation": "references"
+      },
+      {
+        "source_doc": "audit_engagement",
+        "target_doc": "audit_document_request",
+        "relation": "references"
+      },
+      {
+        "source_doc": "audit_engagement",
+        "target_doc": "audit_finding",
+        "relation": "references"
+      },
+      {
+        "source_doc": "audit_engagement",
+        "target_doc": "audit_response_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "audit_engagement",
+        "target_doc": "corrective_action_plan",
+        "relation": "references"
+      },
+      {
+        "source_doc": "audit_engagement",
+        "target_doc": "audit_finding",
+        "relation": "create_record",
+        "action_id": "close"
+      },
+      {
+        "source_doc": "audit_response_record",
+        "target_doc": "audit_engagement",
+        "relation": "references"
+      },
+      {
+        "source_doc": "contract_obligation",
+        "target_doc": "legal_agreement",
+        "relation": "references"
+      },
+      {
+        "source_doc": "legal_agreement",
+        "target_doc": "legal_review_case",
+        "relation": "references"
+      },
+      {
+        "source_doc": "legal_agreement",
+        "target_doc": "contract_obligation",
+        "relation": "references"
+      },
+      {
+        "source_doc": "legal_agreement",
+        "target_doc": "legal_review_case",
+        "relation": "create_record",
+        "action_id": "approve"
+      },
+      {
+        "source_doc": "legal_agreement",
+        "target_doc": "legal_review_case",
+        "relation": "create_record",
+        "action_id": "issue"
+      },
+      {
+        "source_doc": "legal_review_case",
+        "target_doc": "legal_agreement",
+        "relation": "references"
+      },
+      {
+        "source_doc": "corporate_access_request",
+        "target_doc": "corporate_document",
+        "relation": "references"
+      },
+      {
+        "source_doc": "corporate_document",
+        "target_doc": "corporate_register_entry",
+        "relation": "references"
+      },
+      {
+        "source_doc": "corporate_register_entry",
+        "target_doc": "corporate_document",
+        "relation": "references"
+      },
+      {
+        "source_doc": "regulatory_filing",
+        "target_doc": "regulatory_obligation",
+        "relation": "references"
+      },
+      {
+        "source_doc": "regulatory_filing",
+        "target_doc": "submission_confirmation",
+        "relation": "references"
+      },
+      {
+        "source_doc": "regulatory_filing",
+        "target_doc": "compliance_record",
+        "relation": "references"
+      },
+      {
+        "source_doc": "regulatory_filing",
+        "target_doc": "submission_confirmation",
+        "relation": "create_record",
+        "action_id": "confirm"
+      },
+      {
+        "source_doc": "submission_confirmation",
+        "target_doc": "regulatory_filing",
+        "relation": "references"
+      },
+      {
+        "source_doc": "compliance_record",
+        "target_doc": "regulatory_obligation",
+        "relation": "references"
+      },
+      {
+        "source_doc": "regulatory_obligation",
+        "target_doc": "regulatory_filing",
+        "relation": "references"
+      },
+      {
+        "source_doc": "policy_document",
+        "target_doc": "risk_register_entry",
+        "relation": "references"
+      },
+      {
+        "source_doc": "policy_document",
+        "target_doc": "risk_register_entry",
+        "relation": "create_record",
+        "action_id": "approve"
+      },
+      {
+        "source_doc": "mitigation_plan",
+        "target_doc": "risk_register_entry",
+        "relation": "references"
+      },
+      {
+        "source_doc": "risk_register_entry",
+        "target_doc": "mitigation_plan",
+        "relation": "references"
+      },
+      {
+        "source_doc": "risk_register_entry",
+        "target_doc": "policy_document",
+        "relation": "references"
+      },
+      {
+        "source_doc": "risk_register_entry",
+        "target_doc": "mitigation_plan",
+        "relation": "create_record",
+        "action_id": "approve"
+      }
+    ],
+    "operating_graph": {
+      "nodes": [
+        {
+          "id": "audit_preparation",
+          "kind": "module",
+          "title": "Audit Preparation"
+        },
+        {
+          "id": "business_law_fundamentals",
+          "kind": "module",
+          "title": "Business Law Fundamentals"
+        },
+        {
+          "id": "corporate_record_keeping",
+          "kind": "module",
+          "title": "Corporate Record Keeping"
+        },
+        {
+          "id": "regulatory_compliance",
+          "kind": "module",
+          "title": "Regulatory Compliance"
+        },
+        {
+          "id": "risk_policy_management",
+          "kind": "module",
+          "title": "Risk Policy Management"
+        },
+        {
+          "id": "corrective_action_plan",
+          "kind": "doc"
+        },
+        {
+          "id": "audit_finding",
+          "kind": "doc"
+        },
+        {
+          "id": "audit_engagement",
+          "kind": "doc"
+        },
+        {
+          "id": "audit_document_request",
+          "kind": "doc"
+        },
+        {
+          "id": "audit_response_record",
+          "kind": "doc"
+        },
+        {
+          "id": "legal_agreement",
+          "kind": "doc"
+        },
+        {
+          "id": "legal_review_case",
+          "kind": "doc"
+        },
+        {
+          "id": "contract_obligation",
+          "kind": "doc"
+        },
+        {
+          "id": "corporate_document",
+          "kind": "doc"
+        },
+        {
+          "id": "corporate_register_entry",
+          "kind": "doc"
+        },
+        {
+          "id": "regulatory_obligation",
+          "kind": "doc"
+        },
+        {
+          "id": "submission_confirmation",
+          "kind": "doc"
+        },
+        {
+          "id": "compliance_record",
+          "kind": "doc"
+        },
+        {
+          "id": "regulatory_filing",
+          "kind": "doc"
+        },
+        {
+          "id": "risk_register_entry",
+          "kind": "doc"
+        },
+        {
+          "id": "mitigation_plan",
+          "kind": "doc"
+        },
+        {
+          "id": "policy_document",
+          "kind": "doc"
+        }
+      ],
+      "edges": [
+        {
+          "source_doc": "audit_finding",
+          "target_doc": "corrective_action_plan",
+          "relation": "references"
+        },
+        {
+          "source_doc": "corrective_action_plan",
+          "target_doc": "audit_finding",
+          "relation": "references"
+        },
+        {
+          "source_doc": "corrective_action_plan",
+          "target_doc": "audit_finding",
+          "relation": "create_record",
+          "action_id": "close"
+        },
+        {
+          "source_doc": "audit_document_request",
+          "target_doc": "audit_engagement",
+          "relation": "references"
+        },
+        {
+          "source_doc": "audit_engagement",
+          "target_doc": "audit_document_request",
+          "relation": "references"
+        },
+        {
+          "source_doc": "audit_engagement",
+          "target_doc": "audit_finding",
+          "relation": "references"
+        },
+        {
+          "source_doc": "audit_engagement",
+          "target_doc": "audit_response_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "audit_engagement",
+          "target_doc": "corrective_action_plan",
+          "relation": "references"
+        },
+        {
+          "source_doc": "audit_engagement",
+          "target_doc": "audit_finding",
+          "relation": "create_record",
+          "action_id": "close"
+        },
+        {
+          "source_doc": "audit_response_record",
+          "target_doc": "audit_engagement",
+          "relation": "references"
+        },
+        {
+          "source_doc": "contract_obligation",
+          "target_doc": "legal_agreement",
+          "relation": "references"
+        },
+        {
+          "source_doc": "legal_agreement",
+          "target_doc": "legal_review_case",
+          "relation": "references"
+        },
+        {
+          "source_doc": "legal_agreement",
+          "target_doc": "contract_obligation",
+          "relation": "references"
+        },
+        {
+          "source_doc": "legal_agreement",
+          "target_doc": "legal_review_case",
+          "relation": "create_record",
+          "action_id": "approve"
+        },
+        {
+          "source_doc": "legal_agreement",
+          "target_doc": "legal_review_case",
+          "relation": "create_record",
+          "action_id": "issue"
+        },
+        {
+          "source_doc": "legal_review_case",
+          "target_doc": "legal_agreement",
+          "relation": "references"
+        },
+        {
+          "source_doc": "corporate_access_request",
+          "target_doc": "corporate_document",
+          "relation": "references"
+        },
+        {
+          "source_doc": "corporate_document",
+          "target_doc": "corporate_register_entry",
+          "relation": "references"
+        },
+        {
+          "source_doc": "corporate_register_entry",
+          "target_doc": "corporate_document",
+          "relation": "references"
+        },
+        {
+          "source_doc": "regulatory_filing",
+          "target_doc": "regulatory_obligation",
+          "relation": "references"
+        },
+        {
+          "source_doc": "regulatory_filing",
+          "target_doc": "submission_confirmation",
+          "relation": "references"
+        },
+        {
+          "source_doc": "regulatory_filing",
+          "target_doc": "compliance_record",
+          "relation": "references"
+        },
+        {
+          "source_doc": "regulatory_filing",
+          "target_doc": "submission_confirmation",
+          "relation": "create_record",
+          "action_id": "confirm"
+        },
+        {
+          "source_doc": "submission_confirmation",
+          "target_doc": "regulatory_filing",
+          "relation": "references"
+        },
+        {
+          "source_doc": "compliance_record",
+          "target_doc": "regulatory_obligation",
+          "relation": "references"
+        },
+        {
+          "source_doc": "regulatory_obligation",
+          "target_doc": "regulatory_filing",
+          "relation": "references"
+        },
+        {
+          "source_doc": "policy_document",
+          "target_doc": "risk_register_entry",
+          "relation": "references"
+        },
+        {
+          "source_doc": "policy_document",
+          "target_doc": "risk_register_entry",
+          "relation": "create_record",
+          "action_id": "approve"
+        },
+        {
+          "source_doc": "mitigation_plan",
+          "target_doc": "risk_register_entry",
+          "relation": "references"
+        },
+        {
+          "source_doc": "risk_register_entry",
+          "target_doc": "mitigation_plan",
+          "relation": "references"
+        },
+        {
+          "source_doc": "risk_register_entry",
+          "target_doc": "policy_document",
+          "relation": "references"
+        },
+        {
+          "source_doc": "risk_register_entry",
+          "target_doc": "mitigation_plan",
+          "relation": "create_record",
+          "action_id": "approve"
+        }
+      ]
+    }
   }
 }

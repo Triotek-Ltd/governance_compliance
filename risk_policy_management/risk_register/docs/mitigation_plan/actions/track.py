@@ -2,17 +2,19 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 
 DOC_ID = "mitigation_plan"
 ACTION_ID = "track"
-ACTION_RULE = {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}
+ACTION_RULE: dict[str, Any] = {'allowed_in_states': ['open', 'in_progress'], 'transitions_to': None}
 
 STATE_FIELD = 'workflow_state'
 WORKFLOW_HINTS = {'relation_context': {'related_docs': ['risk_register_entry'], 'borrowed_fields': ['severity', 'owner context from risk_register_entry'], 'inferred_roles': ['compliance officer']}, 'actors': ['compliance officer'], 'action_actors': {'create': ['compliance officer'], 'assign': ['compliance officer'], 'track': ['compliance officer'], 'close': ['compliance officer']}}
 
 def handle_track(payload: dict, context: dict | None = None) -> dict:
     context = context or {}
-    next_state = ACTION_RULE.get("transitions_to")
+    next_state = cast(str | None, ACTION_RULE.get("transitions_to"))
     updates = {STATE_FIELD: next_state} if STATE_FIELD and next_state else {}
     return {
         "doc_id": DOC_ID,

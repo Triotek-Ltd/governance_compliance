@@ -2,13 +2,15 @@
 
 from __future__ import annotations
 
+from typing import Any, cast
+
 
 DOC_ID = "regulatory_filing"
 ARCHETYPE = "transaction"
 INITIAL_STATE = 'draft'
 STATES = ['draft', 'submitted', 'confirmed', 'archived']
 TERMINAL_STATES = ['archived']
-ACTION_RULES = {'create': {'allowed_in_states': ['draft', 'submitted', 'confirmed'], 'transitions_to': None}, 'review': {'allowed_in_states': ['draft', 'submitted', 'confirmed'], 'transitions_to': None}, 'submit': {'allowed_in_states': ['draft', 'submitted', 'confirmed'], 'transitions_to': 'submitted'}, 'confirm': {'allowed_in_states': ['draft', 'submitted', 'confirmed'], 'transitions_to': 'confirmed'}, 'archive': {'allowed_in_states': ['draft', 'submitted', 'confirmed'], 'transitions_to': 'archived'}, 'assign': {'allowed_in_states': ['draft', 'submitted', 'confirmed'], 'transitions_to': None}, 'mark_late': {'allowed_in_states': ['draft', 'submitted', 'confirmed'], 'transitions_to': None}, 'request_revision': {'allowed_in_states': ['draft', 'submitted', 'confirmed'], 'transitions_to': None}, 'record': {'allowed_in_states': ['draft', 'submitted', 'confirmed'], 'transitions_to': None}}
+ACTION_RULES: dict[str, dict[str, Any]] = {'create': {'allowed_in_states': ['draft', 'submitted', 'confirmed'], 'transitions_to': None}, 'review': {'allowed_in_states': ['draft', 'submitted', 'confirmed'], 'transitions_to': None}, 'submit': {'allowed_in_states': ['draft', 'submitted', 'confirmed'], 'transitions_to': 'submitted'}, 'confirm': {'allowed_in_states': ['draft', 'submitted', 'confirmed'], 'transitions_to': 'confirmed'}, 'archive': {'allowed_in_states': ['draft', 'submitted', 'confirmed'], 'transitions_to': 'archived'}, 'assign': {'allowed_in_states': ['draft', 'submitted', 'confirmed'], 'transitions_to': None}, 'mark_late': {'allowed_in_states': ['draft', 'submitted', 'confirmed'], 'transitions_to': None}, 'request_revision': {'allowed_in_states': ['draft', 'submitted', 'confirmed'], 'transitions_to': None}, 'record': {'allowed_in_states': ['draft', 'submitted', 'confirmed'], 'transitions_to': None}}
 
 STATE_FIELD = 'workflow_state'
 WORKFLOW_HINTS = {'business_objective': 'track obligations, prepare filings, submit them, and retain submission evidence', 'actors': ['compliance officer', 'preparer', 'approver', 'regulator-facing submitter'], 'start_condition': 'a regulatory obligation or due date becomes actionable', 'ordered_steps': ['Create the filing record for the reporting period or event.', 'Prepare submission content and supporting documents.', 'Submit and confirm the filing.', 'Mark lateness, issues, or revisions if necessary.', 'Archive the completed regulatory record set.'], 'primary_actions': ['create', 'assign', 'review', 'record', 'request_revision', 'submit', 'confirm', 'mark_late', 'archive'], 'primary_transitions': ['regulatory_filing: draft', 'regulatory_filing: draft -> submitted -> confirmed'], 'downstream_effects': ['compliance history becomes available to audit, legal, risk, and reporting flows'], 'action_actors': {'create': ['compliance officer'], 'review': ['preparer'], 'submit': ['compliance officer'], 'confirm': ['approver'], 'archive': ['compliance officer'], 'assign': ['compliance officer'], 'record': ['compliance officer']}}
@@ -29,7 +31,7 @@ class WorkflowService:
 
     def next_state_for(self, action_id: str) -> str | None:
         rule = ACTION_RULES.get(action_id, {})
-        return rule.get("transitions_to")
+        return cast(str | None, rule.get("transitions_to"))
 
     def apply_action(self, action_id: str, state: str | None) -> dict:
         if not self.is_action_allowed(action_id, state):
